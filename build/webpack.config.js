@@ -6,7 +6,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        main: path.resolve(__dirname, '../src/main.js')
+        SuperReceipt: path.resolve(__dirname, '../src/index.js')
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
