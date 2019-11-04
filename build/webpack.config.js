@@ -10,7 +10,7 @@ module.exports = {
     },
     output: {
         path: path.resolve(__dirname, '../dist'),
-        filename: 'js/[name].[hash:8].js',
+        filename: 'js/SuperReceipt.min.js',
         chunkFilename: 'js/[name].[hash:8].js',
         publicPath: './'
     },
