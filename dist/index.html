@@ -12,8 +12,40 @@
     <script src="./js/SuperReceipt.min.js"></script>
     <script>
         SuperReceipt.init({
-            el: '#app'
+            el: '#app',
+            topToolbar: [
+                {
+                    text: '暂存',
+                    size: 'small',
+                    type: 'warning',
+                    click: function() {
+                        alert('暂存');
+                    }
+                },
+                {
+                    text: '提交审批',
+                    type: 'success',
+                    click: function() {
+                        alert('提交审批');
+                    }
+                },
+                {
+                    text: '删除',
+                    type: 'danger',
+                    click: function() {
+                        alert('删除');
+                    }
+                }
+            ],
+            title: {
+                left: '',
+                middle: {
+                    titleText: '采购入库申请单',
+                    titleIcon: '待推送'
+                },
+                right: 'NO: 201907001'
+            }
         });
     </script>
-<script type="text/javascript" src="js/SuperReceipt.min.js"></script></body>
+<script type="text/javascript" src="/js/SuperReceipt.min.js"></script></body>
 </html>

@@ -12,7 +12,7 @@
 <script>
 import XButton from './components/Button.vue';
 export default {
-    name: 'x-toptoolbar',
+    name: 'toptoolbar',
     components: {
         XButton
     },
