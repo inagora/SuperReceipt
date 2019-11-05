@@ -12,7 +12,31 @@
     <script src="./js/SuperReceipt.min.js"></script>
     <script>
         SuperReceipt.init({
-            el: '#app'
+            el: '#app',
+            topToolbar: [
+                {
+                    text: '暂存',
+                    size: 'small',
+                    type: 'warning',
+                    click: function() {
+                        alert('暂存');
+                    }
+                },
+                {
+                    text: '提交审批',
+                    type: 'success',
+                    click: function() {
+                        alert('提交审批');
+                    }
+                },
+                {
+                    text: '删除',
+                    type: 'danger',
+                    click: function() {
+                        alert('删除');
+                    }
+                }
+            ]
         });
     </script>
 </body>

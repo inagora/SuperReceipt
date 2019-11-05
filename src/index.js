@@ -14,7 +14,7 @@ export function init(config, Vue) {
         console.log('The container is not a dom, please check!');
         return null;
     }
-    el.innerHTML = '<x-superreceipt ref="superreceipt"></x-superreceipt>';
+    el.innerHTML = '<x-superreceipt ref="superreceipt" :config="config"></x-superreceipt>';
     if(!Vue) {
         Vue = window.Vue;
     }
