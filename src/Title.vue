@@ -17,12 +17,15 @@ export default {
     data() {
         let titles = Object.keys(this.title).map(key => {
             let titleItem = this.title[key];
-            // if() {
-
-            // }
+            if(typeof titleItem === 'string') {
+                let titleObj = {
+                    titleText: titleItem,
+                    titleIcon: ''
+                }
+                this.title[key] = titleObj;
+            }
             return this.title[key];
         });
-        console.log(titles);
         return {
             titles: this.title
         }
