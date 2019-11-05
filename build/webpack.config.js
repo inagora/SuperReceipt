@@ -12,11 +12,14 @@ module.exports = {
         path: path.resolve(__dirname, '../dist'),
         filename: 'js/SuperReceipt.min.js',
         chunkFilename: 'js/[name].[hash:8].js',
-        publicPath: './'
+        library: 'SuperReceipt',
+        libraryTarget: 'window',
+        publicPath: '/'
     },
     devServer: {
         hot: true,
         port: 8989,
+        hotOnly: true,
         contentBase: './dist'
     },
     module: {
