@@ -48,9 +48,61 @@
             form: [
                 {
                     type: 'input',
-                    label: '控件1',
+                    label: '公司实体',
                     placeholder: '请输入内容',
-                    size: 'middle',
+                    size: 'small',
+                    input: function(val) {
+                        console.log(val);
+                    }
+                },
+                {
+                    type: 'input',
+                    label: '收货人电话',
+                    placeholder: '请输入内容',
+                    size: 'medium',
+                },
+                {
+                    type: 'datetime',
+                    label: '收货人电话',
+                    placeholder: '请输入内容',
+                    size: 'medium',
+                },
+                {
+                    type: 'select',
+                    label: '收货人电话',
+                    placeholder: '请输入内容',
+                    size: 'medium',
+                    options: [
+                        {
+                            value: '选项1',
+                            label: '选项1'
+                        },{
+                            value: '选项2',
+                            label: '选项2'
+                        },{
+                            value: '选项3',
+                            label: '选项3'
+                        }
+                    ]
+                },
+                {
+                    type: 'input',
+                    label: '收货人电话',
+                    placeholder: '请输入内容',
+                    size: 'medium',
+                },
+                {
+                    type: 'textarea',
+                    label: '收货人电话',
+                    placeholder: '请输入内容',
+                    size: 'medium',
+                },
+                {
+                    type: 'input',
+                    label: '收货人电话',
+                    placeholder: '请输入内容',
+                    size: 'medium',
+                    disabled: true
                 }
             ]
         });
