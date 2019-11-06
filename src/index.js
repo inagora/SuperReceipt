@@ -1,4 +1,5 @@
 import SuperReceipt from './SuperReceipt.vue';
+import './plugins/elementui.js';
 
 Vue.component('x-superreceipt', SuperReceipt);
 

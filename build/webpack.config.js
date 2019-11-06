@@ -61,6 +61,25 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.css$/,
+                use: [
+                    {
+                        loader: "vue-style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    }
+                ]
+            },
+            {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/i,
+                use: [
+                    {
+                        loader: 'url-loader'
+                    }
+                ]
             }
         ],
     },

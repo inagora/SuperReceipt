@@ -30,9 +30,6 @@ export default {
         triggerClick(btn) {
             btn.click();
         }
-    },
-    mounted() {
-        console.log(this.topToolbar);
     }
 }
 </script>
