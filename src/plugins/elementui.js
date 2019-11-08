@@ -4,7 +4,9 @@ import {
     Input,
     DatePicker,
     Select,
-    Option
+    Option,
+    Table,
+    TableColumn
 } from 'element-ui';
 
 Vue.use(Form);
@@ -13,3 +15,5 @@ Vue.use(Input);
 Vue.use(DatePicker);
 Vue.use(Select);
 Vue.use(Option);
+Vue.use(Table);
+Vue.use(TableColumn);

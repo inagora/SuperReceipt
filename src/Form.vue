@@ -11,15 +11,17 @@
                 :disabled="form.disabled"
                 :type="form.type"
                 :placeholder="form.placeholder"
-                @input="handleInput(form, $event)"
+                v-model="formData[form.prop]"
+                @change="handleChange"
                 autosize></el-input>
             <el-date-picker
                 v-if="['datetime', 'date'].includes(form.type)"
                 :type="form.type"
-                :placeholder="form.placeholder"></el-date-picker>
+                v-model="formData[form.prop]"></el-date-picker>
             <el-select
                 v-if="form.type === 'select'"
                 :type="form.type"
+                v-model="formData[form.prop]"
                 :placeholder="form.placeholder">
                 <el-option
                     v-for="option in form.options"
@@ -37,19 +39,25 @@ export default {
     inject: {
         form: {
             default: []
+        },
+        formData: {
+            default: {}
         }
     },
     data() {
         console.log(this.form);
         return {
             forms: this.form,
-            formData: {}
+            inputVal: ''
         }
     },
     methods: {
         handleInput(form, event) {
             console.log(event);
             form.input(222);
+        },
+        handleChange(val) {
+            console.log(val);
         }
     }
 }

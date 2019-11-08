@@ -11,6 +11,8 @@
 import XTopToolbar from './TopToolbar.vue';
 import XTitle from './Title.vue';
 import XForm from './Form.vue';
+import XTable from './Table.vue';
+import XBottomToolbar from './BottomToolbar.vue';
 export default {
     name: 'x-superreceipt',
     props: ['config'],
@@ -18,7 +20,9 @@ export default {
         let coms = {
             topToolbar: XTopToolbar,
             title: XTitle,
-            form: XForm
+            form: XForm,
+            table: XTable,
+            bottomToolbar: XBottomToolbar
         }
         let configKeys = Object.keys(this.config);
         // 配置的组件，如果在config中没有配置的组件不会加载
