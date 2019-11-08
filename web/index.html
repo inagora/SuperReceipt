@@ -158,7 +158,7 @@
                         type: 'danger',
                         click: function(scope) {
                             console.log(scope);
-                            superReceipt.config.table.tableData.length = 1;
+                            superReceipt.config.table.tableData.splice(scope.$index, 1);
                         }
                     }
                 ]
