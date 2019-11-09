@@ -32,7 +32,7 @@ export default {
                 }
             });
         return {
-            coms: configCom.map(item => {
+            coms: configCom.map(item => { // 格式化组件
                 return {name:item, com: coms[item]}
             })
         }
