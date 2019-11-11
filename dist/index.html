@@ -8,7 +8,7 @@
 </head>
 <body>
     <div id="app"></div>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16"></script>
     <script src="./js/SuperReceipt.min.js"></script>
     <script>
         let superReceipt = SuperReceipt.init({
@@ -187,10 +187,11 @@
                     }
                 },
                 {
-                    text: '删除',
-                    type: 'danger',
+                    text: '打印',
+                    type: 'primary',
+                    isPrint: true,
                     click: function() {
-                        alert('删除');
+                        window.print();
                     }
                 }
             ]
