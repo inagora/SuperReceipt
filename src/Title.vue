@@ -20,33 +20,46 @@ export default {
         }
     },
     data() {
-        let defaultTitle = {
-            left: {
-                titleText: '',
-                titleIcon: ''
-            },
-            middle: {
-                titleText: '',
-                titleIcon: ''
-            },
-            right: {
-                titleText: '',
-                titleIcon: ''
-            }
+        return {
+            titles: this.formatTitle()
         }
-        let formTitle = Object.assign(defaultTitle, this.title);
-        Object.keys(formTitle).forEach(key => {
-            let titleItem = formTitle[key];
-            if(typeof titleItem === 'string') {
-                let titleObj = {
-                    titleText: titleItem,
+    },
+    methods: {
+        formatTitle() {
+            let defaultTitle = {
+                left: {
+                    titleText: '',
+                    titleIcon: ''
+                },
+                middle: {
+                    titleText: '',
+                    titleIcon: ''
+                },
+                right: {
+                    titleText: '',
                     titleIcon: ''
                 }
-                formTitle[key] = titleObj;
             }
-        });
-        return {
-            titles: formTitle
+            let formTitle = Object.assign(defaultTitle, this.title);
+            Object.keys(formTitle).forEach(key => {
+                let titleItem = formTitle[key];
+                if(typeof titleItem === 'string') {
+                    let titleObj = {
+                        titleText: titleItem,
+                        titleIcon: ''
+                    }
+                    formTitle[key] = titleObj;
+                }
+            });
+            return formTitle;
+        }
+    },
+    watch: {
+        title: {
+            handler(val) {
+                this.titles = this.formatTitle();
+            },
+            deep: true
         }
     }
 }

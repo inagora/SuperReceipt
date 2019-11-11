@@ -20,14 +20,15 @@
                     type: 'warning',
                     click: function() {
                         console.log(superReceipt.config.formData);
-                        alert('暂存');
+                        // alert('暂存');
+                        superReceipt.config.title.left = '';
                     }
                 },
                 {
                     text: '提交审批',
                     type: 'success',
                     click: function() {
-                        alert('提交审批');
+                        superReceipt.config.title.middle.titleIcon = '待审批';
                     }
                 },
                 {
