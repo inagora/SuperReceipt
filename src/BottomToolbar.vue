@@ -28,7 +28,16 @@ export default {
     },
     methods: {
         triggerClick(btn) {
-            btn.click();
+            // 特殊按钮处理
+            if(btn.isPrint) { // 打印
+                let f = document.getElementById('printf');
+                f.contentDocument.write(document.querySelector('.print-content').innerHTML);
+                f.contentDocument.close();
+                f.contentWindow.print();
+            } else {
+                btn.click();
+            }
+            
         }
     }
 }
