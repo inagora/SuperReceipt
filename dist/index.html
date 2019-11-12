@@ -20,14 +20,15 @@
                     type: 'warning',
                     click: function() {
                         console.log(superReceipt.config.formData);
-                        alert('暂存');
+                        // alert('暂存');
+                        superReceipt.config.title.left = '';
                     }
                 },
                 {
                     text: '提交审批',
                     type: 'success',
                     click: function() {
-                        alert('提交审批');
+                        superReceipt.config.title.middle.titleIcon = '待审批';
                     }
                 },
                 {
@@ -102,6 +103,31 @@
                     placeholder: '请输入内容',
                     size: 'medium',
                     disabled: true
+                },
+                {
+                    type: 'radio',
+                    prop: 'radio',
+                    label: '单选按钮',
+                    radios: [
+                        {
+                            label: 1,
+                            text: '选项1'
+                        },
+                        {
+                            label: 2,
+                            text: '选项2'
+                        }
+                    ]
+                },
+                {
+                    type: 'switch',
+                    prop: 'switch',
+                    label: '开关',
+                },
+                {
+                    type: 'checkbox',
+                    prop: 'checkbox',
+                    label: '多选框'
                 }
             ],
             // form表单数据
@@ -109,7 +135,10 @@
                 com: '',
                 phone: '',
                 address: '',
-                stime: ''
+                stime: '',
+                radio: 1,
+                switch: true,
+                checkbox: true
             },
             table: {
                 // 表格列
@@ -189,9 +218,9 @@
                 {
                     text: '打印',
                     type: 'primary',
-                    isPrint: true,
+                    isPrint: true, // 是否是打印按钮
                     click: function() {
-                        window.print();
+                        
                     }
                 }
             ]

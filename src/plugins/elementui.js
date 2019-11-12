@@ -6,7 +6,10 @@ import {
     Select,
     Option,
     Table,
-    TableColumn
+    TableColumn,
+    Radio,
+    Switch,
+    Checkbox
 } from 'element-ui';
 
 Vue.use(Form);
@@ -17,3 +20,6 @@ Vue.use(Select);
 Vue.use(Option);
 Vue.use(Table);
 Vue.use(TableColumn);
+Vue.use(Radio);
+Vue.use(Switch);
+Vue.use(Checkbox);

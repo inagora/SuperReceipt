@@ -6,7 +6,7 @@
             :key="index" 
             :label="form.label">
             <el-input 
-                v-if="['input', 'textarea', 'button', 'checkbox', 'number', 'password', 'radio'].includes(form.type)"
+                v-if="['input', 'textarea', 'button', 'number', 'password'].includes(form.type)"
                 :size="form.size"
                 :disabled="form.disabled"
                 :type="form.type"
@@ -14,6 +14,19 @@
                 v-model="formData[form.prop]"
                 @change="handleChange"
                 autosize></el-input>
+            <template v-if="form.type === 'radio'">
+                <el-radio 
+                    v-for="(radio, index) in form.radios"
+                    v-model="formData[form.prop]" 
+                    :label="radio.label"
+                    :key="index">{{radio.text}}</el-radio>
+            </template>
+            <el-switch
+                v-model="formData[form.prop]"
+                v-if="form.type === 'switch'"></el-switch>
+            <el-checkbox
+                v-if="form.type === 'checkbox'"
+                v-model="formData[form.prop]"></el-checkbox>
             <el-date-picker
                 v-if="['datetime', 'date'].includes(form.type)"
                 :type="form.type"
