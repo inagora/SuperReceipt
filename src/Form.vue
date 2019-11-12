@@ -18,22 +18,32 @@
                 <el-radio 
                     v-for="(radio, index) in form.radios"
                     v-model="formData[form.prop]" 
+                    :size="form.size"
+                    :disabled="form.disabled"
                     :label="radio.label"
                     :key="index">{{radio.text}}</el-radio>
             </template>
             <el-switch
                 v-model="formData[form.prop]"
+                :size="form.size"
+                :disabled="form.disabled"
                 v-if="form.type === 'switch'"></el-switch>
             <el-checkbox
                 v-if="form.type === 'checkbox'"
+                :size="form.size"
+                :disabled="form.disabled"
                 v-model="formData[form.prop]"></el-checkbox>
             <el-date-picker
                 v-if="['datetime', 'date'].includes(form.type)"
+                :size="form.size"
+                :disabled="form.disabled"
                 :type="form.type"
                 v-model="formData[form.prop]"></el-date-picker>
             <el-select
                 v-if="form.type === 'select'"
                 :type="form.type"
+                :size="form.size"
+                :disabled="form.disabled"
                 v-model="formData[form.prop]"
                 :placeholder="form.placeholder">
                 <el-option
@@ -81,12 +91,15 @@ export default {
     justify-content: flex-start;
     margin-top: 30px;
     flex-wrap: wrap;
-    width: 80%;
+    width: 100%;
     margin: 30px auto;
     &-item {
         min-width: 250px;
         display: flex;
         margin-right: 40px;
+    }
+    .el-form-item {
+        margin-bottom: 0px;
     }
 }
 </style>

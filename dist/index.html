@@ -54,7 +54,7 @@
                     type: 'input',
                     label: '公司实体',
                     placeholder: '请输入内容',
-                    size: 'small',
+                    size: 'mini',
                     prop: 'com'
                 },
                 {
@@ -62,20 +62,20 @@
                     label: '收货人电话',
                     placeholder: '请输入内容',
                     prop: 'phone',
-                    size: 'medium',
+                    size: 'mini',
                 },
                 {
                     type: 'datetime',
                     label: '时间',
                     placeholder: '请输入内容',
                     prop: 'stime',
-                    size: 'medium',
+                    size: 'mini',
                 },
                 {
                     type: 'select',
                     label: '收货人电话',
                     placeholder: '请输入内容',
-                    size: 'medium',
+                    size: 'mini',
                     prop: 'sel',
                     options: [
                         {
@@ -95,13 +95,13 @@
                     label: '收货人地址',
                     placeholder: '请输入内容',
                     prop: 'address',
-                    size: 'medium',
+                    size: 'mini',
                 },
                 {
                     type: 'input',
                     label: '收货人电话',
                     placeholder: '请输入内容',
-                    size: 'medium',
+                    size: 'mini',
                     disabled: true
                 },
                 {
@@ -161,21 +161,7 @@
                 ],
                 // 表格数据
                 tableData: [
-                    {
-                        id: 1,
-                        name: 'niu',
-                        amount1: 10
-                    },
-                    {
-                        id: 2,
-                        name: 'niu2',
-                        amount1: 50
-                    },
-                    {
-                        id: 3,
-                        name: 'niu3',
-                        amount1: 10
-                    }
+                    
                 ],
                 // 操作按钮
                 optBtns: [
@@ -212,7 +198,23 @@
                     text: '导入',
                     type: 'success',
                     click: function() {
-                        alert('导入');
+                        superReceipt.config.table.tableData = [
+                            {
+                                id: 1,
+                                name: 'niu',
+                                amount1: 10
+                            },
+                            {
+                                id: 2,
+                                name: 'niu2',
+                                amount1: 50
+                            },
+                            {
+                                id: 3,
+                                name: 'niu3',
+                                amount1: 10
+                            }   
+                        ]
                     }
                 },
                 {

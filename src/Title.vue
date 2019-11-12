@@ -3,7 +3,7 @@
         <div class="sr-title-content sr-title-left">{{titles.left.titleText}}</div>
         <div class="sr-title-content sr-title-middle">
             {{titles.middle.titleText}}
-            <span class="sr-title-content-icon sr-title-middle-icon">{{titles.middle.titleIcon}}</span>
+            <span class="sr-title-content-icon sr-title-middle-icon" v-if="titles.middle.titleIcon">{{titles.middle.titleIcon}}</span>
         </div>
         <div class="sr-title-content sr-title-right">{{titles.right.titleText}}</div>
         <el-form>

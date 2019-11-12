@@ -1,6 +1,7 @@
 <template>
     <div class="sr-table">
         <el-table 
+            v-if="tableConfig.columns.length > 0"
             :data="tableConfig.tableData"
             show-summary
             border>
