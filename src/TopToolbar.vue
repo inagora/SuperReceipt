@@ -4,7 +4,7 @@
             <x-button 
                 :key="index"
                 :conf="btn"
-                @click="triggerClick(btn)"></x-button>
+                @click="triggerClick($event, btn)"></x-button>
         </template>
     </div>
 </template>
@@ -27,8 +27,18 @@ export default {
         }
     },
     methods: {
-        triggerClick(btn) {
-            btn.click();
+        triggerClick(e, btn) {
+            // 特殊按钮处理
+            if(btn.isPrint) { // 打印
+                let f = document.getElementById('printf');
+                f.contentDocument.write(document.querySelector('.print-content').innerHTML);
+                f.contentDocument.close();
+                f.contentWindow.print();
+            } else if(btn.isImport) {
+                btn.change(e);
+            } else {
+                btn.click();
+            }
         }
     }
 }

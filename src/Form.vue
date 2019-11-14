@@ -1,9 +1,13 @@
 <template>
-    <el-form class="sr-form" :model="formData">
+    <el-form class="sr-form" ref="formData" :model="formData" :disabled="!isEditable">
         <el-form-item 
             class="sr-form-item" 
             v-for="(form, index) in forms" 
             :key="index" 
+            :required="form.isRequired"
+            :error="form.error"
+            :prop="form.prop"
+            :inline-message="true"
             :label="form.label">
             <el-input 
                 v-if="['input', 'textarea', 'button', 'number', 'password'].includes(form.type)"
@@ -45,6 +49,7 @@
                 :size="form.size"
                 :disabled="form.disabled"
                 v-model="formData[form.prop]"
+                @change="handleChange($event, form)"
                 :placeholder="form.placeholder">
                 <el-option
                     v-for="option in form.options"
@@ -65,13 +70,22 @@ export default {
         },
         formData: {
             default: {}
+        },
+        isEditable: {
+            default: true
         }
     },
     data() {
-        console.log(this.form);
+        let rules = [];
+        this.form.forEach(item => {
+            let rule = {};
+            rule[item.prop] = item.rule;
+            rules.push(rule);
+        });
         return {
             forms: this.form,
-            inputVal: ''
+            inputVal: '',
+            rules: rules
         }
     },
     methods: {
@@ -79,8 +93,8 @@ export default {
             console.log(event);
             form.input(222);
         },
-        handleChange(val) {
-            console.log(val);
+        handleChange(val, form) {
+            form.change(val);
         }
     }
 }

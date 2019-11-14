@@ -13,15 +13,14 @@
     <script>
         let superReceipt = SuperReceipt.init({
             el: '#app',
+            isEditable: true,
             topToolbar: [
                 {
                     text: '暂存',
                     size: 'small',
                     type: 'warning',
                     click: function() {
-                        console.log(superReceipt.config.formData);
-                        // alert('暂存');
-                        superReceipt.config.title.left = '';
+                        console.log(superReceipt.$refs);
                     }
                 },
                 {
@@ -34,6 +33,7 @@
                 {
                     text: '删除',
                     type: 'danger',
+                    disabled: true,
                     click: function() {
                         alert('删除');
                     }
@@ -55,7 +55,9 @@
                     label: '公司实体',
                     placeholder: '请输入内容',
                     size: 'mini',
-                    prop: 'com'
+                    prop: 'com',
+                    isRequired: true,
+                    error: '公司实体不能为空'
                 },
                 {
                     type: 'input',
@@ -88,7 +90,10 @@
                             value: '选项3',
                             label: '选项3'
                         }
-                    ]
+                    ],
+                    change(val) { // 当前值
+                        
+                    }
                 },
                 {
                     type: 'textarea',
@@ -161,7 +166,11 @@
                 ],
                 // 表格数据
                 tableData: [
-                    
+                    {
+                        id: 1,
+                        name: 'niu',
+                        amount1: 10
+                    }
                 ],
                 // 操作按钮
                 optBtns: [
@@ -197,24 +206,29 @@
                 {
                     text: '导入',
                     type: 'success',
+                    isImport: true,
+                    disabled: true,
                     click: function() {
-                        superReceipt.config.table.tableData = [
-                            {
-                                id: 1,
-                                name: 'niu',
-                                amount1: 10
-                            },
-                            {
-                                id: 2,
-                                name: 'niu2',
-                                amount1: 50
-                            },
-                            {
-                                id: 3,
-                                name: 'niu3',
-                                amount1: 10
-                            }   
-                        ]
+                        // superReceipt.config.table.tableData = [
+                        //     {
+                        //         id: 1,
+                        //         name: 'niu',
+                        //         amount1: 10
+                        //     },
+                        //     {
+                        //         id: 2,
+                        //         name: 'niu2',
+                        //         amount1: 50
+                        //     },
+                        //     {
+                        //         id: 3,
+                        //         name: 'niu3',
+                        //         amount1: 10
+                        //     }   
+                        // ]
+                    },
+                    change(e) {
+                        console.log(e);
                     }
                 },
                 {

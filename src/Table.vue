@@ -9,9 +9,10 @@
                 <el-table-column
                     :key="index"
                     :label="column.label"
-                    :prop="column.prop"></el-table-column>
+                    :prop="column.prop">
+                </el-table-column>
             </template>
-            <el-table-column class="column-opt" v-if="tableConfig.optBtns.length > 0" label="操作">
+            <el-table-column class="column-opt" v-if="tableConfig.optBtns.length > 0 && isEditable" label="操作">
                 <template slot-scope="scope" >
                     <x-button
                         v-for="(btn, index) in tableConfig.optBtns"
@@ -42,6 +43,9 @@ export default {
     inject: {
         table: {
             default: {}
+        },
+        isEditable: {
+            default: true
         }
     },
     components: {

@@ -1,7 +1,19 @@
 <template>
     <button 
+        v-if="!conf.isImport"
         :class="['sr-btn', themeCls, sizeCls]" 
+        :disabled="conf.disabled"
         @click="$emit('click')">{{conf.text}}</button>
+    <div v-else>
+        <input
+            type="file"
+            :visible="conf.disabled"
+            :class="['sr-btn sr-input', themeCls, sizeCls]"
+            @change="change">
+        <button 
+            :disabled="conf.disabled"
+            :class="['sr-btn', themeCls, sizeCls]">{{conf.text}}</button>
+    </div>
 </template>
 
 <script>
@@ -68,6 +80,11 @@ export default {
         },
         'conf.visible'(val){
             this.visible = val;
+        }
+    },
+    methods: {
+        change(e) {
+            this.$emit('click', e);
         }
     }
 }
@@ -204,6 +221,11 @@ export default {
             margin-left: 3px;
         }
 
+    }
+    .sr-input {
+        position: absolute;
+        width: 30px;
+        opacity: 0;
     }
 </style>
 
