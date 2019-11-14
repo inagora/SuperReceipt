@@ -67,7 +67,7 @@ export default {
 	}
 
 	.sr-btn{
-		margin-right: 8px;
+		margin-right: 3px;
 		margin-bottom: 10px;
 	}
 

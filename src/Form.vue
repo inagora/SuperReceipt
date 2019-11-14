@@ -1,5 +1,5 @@
 <template>
-    <el-form class="sr-form" ref="formData" :model="formData" :disabled="!isEditable">
+    <el-form v-if="isEditable" class="sr-form" ref="formData" label-position="left" :model="formData">
         <el-form-item 
             class="sr-form-item" 
             v-for="(form, index) in forms" 
@@ -8,6 +8,7 @@
             :error="form.error"
             :prop="form.prop"
             :inline-message="true"
+            label-width="100px"
             :label="form.label">
             <el-input 
                 v-if="['input', 'textarea', 'button', 'number', 'password'].includes(form.type)"
@@ -59,6 +60,21 @@
             </el-select>
         </el-form-item>
     </el-form>
+    <el-form v-else class="sr-form" ref="formData" label-position="left" :model="formData">
+        <el-form-item 
+            class="sr-form-item" 
+            v-for="(form, index) in forms" 
+            :key="index" 
+            :required="form.isRequired"
+            :error="form.error"
+            :prop="form.prop"
+            :inline-message="true"
+            label-width="100px"
+            :label="form.label">
+            <div v-if="form.type === 'radio' || form.type === 'switch' || form.type === 'checkbox'">{{formData[form.prop] ? '是' : '否'}}</div>
+            <div v-else v-text="formData[form.prop]"></div>
+        </el-form-item>
+    </el-form>
 </template>
 
 <script>
@@ -108,9 +124,12 @@ export default {
     width: 100%;
     margin: 30px auto;
     &-item {
-        min-width: 250px;
+        width: 300px;
         display: flex;
         margin-right: 40px;
+    }
+    .el-form-item__content {
+        margin-left: 10px !important;
     }
     .el-form-item {
         margin-bottom: 0px;

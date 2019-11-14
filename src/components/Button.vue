@@ -3,6 +3,7 @@
         v-if="!conf.isImport"
         :class="['sr-btn', themeCls, sizeCls]" 
         :disabled="conf.disabled"
+        :style="conf.style"
         @click="$emit('click')">{{conf.text}}</button>
     <div v-else>
         <input
