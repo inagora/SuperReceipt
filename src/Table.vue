@@ -40,6 +40,7 @@
 import XButton from './components/Button.vue';
 export default {
     name: 'xtable',
+    props: ['name', 'tableConfig'],
     inject: {
         table: {
             default: {}
@@ -52,8 +53,8 @@ export default {
         XButton
     },
     data() {
-        let tableConfig = this.table;
-        console.log(tableConfig);
+        let tableName = this.name;
+        let tableConfig = this.tableConfig;
         let printData = [];
         tableConfig.columns.forEach(item => {
             printData.push(item);

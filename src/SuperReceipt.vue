@@ -1,7 +1,7 @@
 <template>
     <div class="sr">
         <template v-for="com in coms">
-            <component :is="com.com" :key="com.name"></component>
+            <component :is="com.com" :key="com.name" :name="com.name" :tableConfig="config[com.name]"></component>
         </template>
     </div>
 </template>
@@ -21,16 +21,25 @@ export default {
             topToolbar: XTopToolbar,
             title: XTitle,
             form: XForm,
-            table: XTable,
             bottomToolbar: XBottomToolbar
         }
         let configKeys = Object.keys(this.config);
+        // 有多个table的需求
+        let tableKeys = this.config.tableKeys;
+        if(tableKeys && tableKeys.length > 0) {
+            tableKeys.forEach(item => {
+                coms[item] = XTable;
+            });
+        } else {
+            coms.table = XTable;
+        }
+        
         // 配置的组件，如果在config中没有配置的组件不会加载
         let configCom = configKeys.filter(item => {
-                if(coms[item]) {
-                    return item;
-                }
-            });
+            if(coms[item]) {
+                return item;
+            }
+        });
         return {
             coms: configCom.map(item => { // 格式化组件
                 return {name:item, com: coms[item]}

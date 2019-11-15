@@ -110,7 +110,7 @@ export default {
             form.input(222);
         },
         handleChange(val, form) {
-            form.change(val);
+            form.change && form.change(val);
         }
     }
 }

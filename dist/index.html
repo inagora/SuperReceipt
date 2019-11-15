@@ -13,7 +13,8 @@
     <script>
         let superReceipt = SuperReceipt.init({
             el: '#app',
-            isEditable: false,
+            isEditable: true,
+            tableKeys: ['table', 'table1'], // 多个table
             topToolbar: [
                 {
                     text: '暂存',
@@ -67,13 +68,13 @@
                     prop: 'phone',
                     size: 'mini',
                 },
-                // {
-                //     type: 'datetime',
-                //     label: '时间',
-                //     placeholder: '请输入内容',
-                //     prop: 'stime',
-                //     size: 'mini',
-                // },
+                {
+                    type: 'datetime',
+                    label: '时间',
+                    placeholder: '请输入内容',
+                    prop: 'stime',
+                    size: 'mini',
+                },
                 {
                     type: 'select',
                     label: '收货人电话',
@@ -141,7 +142,7 @@
                 com: 'a',
                 phone: '2123',
                 address: '14',
-                stime: '214124',
+                stime: '2019-08-06 08:09:00',
                 radio: 0,
                 switch: true,
                 checkbox: true
@@ -240,7 +241,54 @@
                         
                     }
                 }
-            ]
+            ],
+            table1: {
+                // 表格列
+                columns: [
+                    {
+                        prop: 'id',
+                        label: 'ID',
+                        width: '180'
+                    },
+                    {
+                        prop: 'name',
+                        label: '姓名',
+                        width: '180'
+                    },
+                    {
+                        prop: 'amount1',
+                        label: '数量',
+                        width: '180'
+                    }
+                ],
+                // 表格数据
+                tableData: [
+                    {
+                        id: 1,
+                        name: 'niu2',
+                        amount1: 10
+                    }
+                ],
+                // 操作按钮
+                optBtns: [
+                    {
+                        size: 'mini',
+                        text: '编辑',
+                        click: function(scope) {
+                            console.log(scope);
+                        }
+                    },
+                    {
+                        size: 'mini',
+                        text: '删除',
+                        type: 'danger',
+                        click: function(scope) {
+                            console.log(scope);
+                            superReceipt.config.table1.tableData.splice(scope.$index, 1);
+                        }
+                    }
+                ]
+            },
         });
     </script>
 <script type="text/javascript" src="/js/SuperReceipt.min.js"></script></body>
