@@ -43,6 +43,7 @@
                 :size="form.size"
                 :disabled="form.disabled"
                 :type="form.type"
+                value-format="yyyy-MM-dd HH:mm:ss"
                 v-model="formData[form.prop]"></el-date-picker>
             <el-select
                 v-if="form.type === 'select'"
