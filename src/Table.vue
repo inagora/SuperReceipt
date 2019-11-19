@@ -12,12 +12,13 @@
                     :prop="column.prop">
                 </el-table-column>
             </template>
-            <el-table-column class="column-opt" v-if="tableConfig.optBtns.length > 0 && isEditable" label="操作">
-                <template slot-scope="scope" >
-                    <x-button
+            <el-table-column class="column-opt" v-if="tableConfig.optBtns.length > 0 && isShowOptBtns" label="操作">
+                <template slot-scope="scope">
+                    <x-button 
                         v-for="(btn, index) in tableConfig.optBtns"
                         :key="index"
                         :conf="btn"
+                        v-show="btn.visible"
                         @click="handleClick(btn, scope)"></x-button>
                 </template>
             </el-table-column>
@@ -59,9 +60,17 @@ export default {
         tableConfig.columns.forEach(item => {
             printData.push(item);
         });
+        let isShowOptBtns = tableConfig.optBtns.some(item => {
+            if(typeof item.visible === 'function') {
+                return item.visible();
+            } else {
+                return item.visible;
+            }
+        });
         return {
             tableConfig,
-            printData
+            printData,
+            isShowOptBtns: isShowOptBtns
         }
     },
     methods: {

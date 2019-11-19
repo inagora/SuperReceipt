@@ -7,6 +7,7 @@
             :required="form.isRequired"
             :error="form.error"
             :prop="form.prop"
+            :show-message="false"
             :inline-message="true"
             label-width="100px"
             :label="form.label">
@@ -59,6 +60,7 @@
                     :label="option.label"
                     :value="option.value"></el-option>    
             </el-select>
+            <div v-if="['text', 'label'].includes(form.type)" v-html="formData[form.prop]"></div>
         </el-form-item>
     </el-form>
     <el-form v-else class="sr-form" ref="formData" label-position="left" :model="formData">

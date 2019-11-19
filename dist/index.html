@@ -21,7 +21,7 @@
                     type: 'warning',
                     style: 'border-radius: 0;',
                     click: function() {
-                        console.log(superReceipt.config.formData);
+                       superReceipt.config.isEditable = true;
                     }
                 },
                 {
@@ -112,6 +112,13 @@
                     disabled: true
                 },
                 {
+                    type: 'label',
+                    label: '收货人电话',
+                    placeholder: '请输入内容',
+                    size: 'mini',
+                    prop: 'labeltest'
+                },
+                {
                     type: 'radio',
                     prop: 'radio',
                     label: '单选按钮',
@@ -145,7 +152,8 @@
                 stime: '2019-08-06 08:09:00',
                 radio: 0,
                 switch: true,
-                checkbox: true
+                checkbox: true,
+                labeltest: '111111'
             },
             table: {
                 // 表格列
@@ -179,6 +187,7 @@
                     {
                         size: 'mini',
                         text: '编辑',
+                        visible: false,
                         click: function(scope) {
                             console.log(scope);
                         }
@@ -187,6 +196,7 @@
                         size: 'mini',
                         text: '删除',
                         type: 'danger',
+                        visible: false,
                         click: function(scope) {
                             console.log(scope);
                             superReceipt.config.table.tableData.splice(scope.$index, 1);

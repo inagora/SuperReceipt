@@ -13,6 +13,7 @@
             @change="change">
         <button 
             :disabled="conf.disabled"
+            :visible="conf.visible"
             :class="['sr-btn', themeCls, sizeCls]">{{conf.text}}</button>
     </div>
 </template>
