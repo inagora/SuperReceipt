@@ -105,7 +105,7 @@ export default {
         background-color: transparent;
         border: 1px solid transparent;
         padding: 0 15px;
-        font-size: 14px;
+        font-size: 12px;
         height: 32px;
         border-radius: 4px;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;

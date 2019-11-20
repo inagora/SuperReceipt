@@ -47,7 +47,7 @@ export default {
 <style lang="scss">
 .sr-bottom-toolbar{
 	border-top: 1px solid #d0d0d0;
-	padding: 10px 0 0 10px;
+	padding: 10px 15px 0 10px;
 	display: flex;
 	flex-wrap: wrap;
 	align-items: center;

@@ -86,5 +86,18 @@ export default {
         display: inline-block;
         margin-right: 20px;
     }
+    .el-table td, .el-table th {
+        padding: 0;
+    }
+    .el-table__empty-block {
+        font-size: 12px;
+        min-height: 42px;
+    }
+    .el-table__empty-text {
+        line-height: 42px;
+    }
+    .cell {
+        font-size: 12px;
+    }
 }
 </style>

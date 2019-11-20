@@ -72,6 +72,7 @@ export default {
     line-height: 60px;
     font-weight: 500;
     font-size: 22px;
+    padding: 0 15px;
     &-left, &-right {
         width: 200px;
         font-size: 16px;

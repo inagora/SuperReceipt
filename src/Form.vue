@@ -10,6 +10,7 @@
             :show-message="false"
             :inline-message="true"
             label-width="100px"
+            style="display: flex"
             :label="form.label">
             <el-input 
                 v-if="['input', 'textarea', 'button', 'number', 'password'].includes(form.type)"
@@ -19,6 +20,7 @@
                 :placeholder="form.placeholder"
                 v-model="formData[form.prop]"
                 @change="handleChange"
+                style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
                 autosize></el-input>
             <template v-if="form.type === 'radio'">
                 <el-radio 
@@ -33,17 +35,20 @@
                 v-model="formData[form.prop]"
                 :size="form.size"
                 :disabled="form.disabled"
+                style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
                 v-if="form.type === 'switch'"></el-switch>
             <el-checkbox
                 v-if="form.type === 'checkbox'"
                 :size="form.size"
                 :disabled="form.disabled"
+                style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
                 v-model="formData[form.prop]"></el-checkbox>
             <el-date-picker
                 v-if="['datetime', 'date'].includes(form.type)"
                 :size="form.size"
                 :disabled="form.disabled"
                 :type="form.type"
+                style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
                 value-format="yyyy-MM-dd HH:mm:ss"
                 v-model="formData[form.prop]"></el-date-picker>
             <el-select
@@ -53,6 +58,7 @@
                 :disabled="form.disabled"
                 v-model="formData[form.prop]"
                 @change="handleChange($event, form)"
+                style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
                 :placeholder="form.placeholder">
                 <el-option
                     v-for="option in form.options"
@@ -124,7 +130,7 @@ export default {
     justify-content: flex-start;
     margin-top: 30px;
     flex-wrap: wrap;
-    width: 100%;
+    width: 85%;
     margin: 30px auto;
     &-item {
         width: 300px;
@@ -133,9 +139,25 @@ export default {
     }
     .el-form-item__content {
         margin-left: 10px !important;
+        width: 200px;
+        line-height: 22px !important; 
+        height: 22px;
+        margin-bottom: 3px;
     }
     .el-form-item {
         margin-bottom: 0px;
+    }
+    .el-form-item__label {
+        line-height: 22px !important;
+        height: 22px;
+        font-size: 12px;
+    }
+    .el-input--mini .el-input__inner {
+        height: 22px;
+        line-height: 22px;
+    }
+    .el-input__icon {
+        line-height: 22px !important;
     }
 }
 </style>
