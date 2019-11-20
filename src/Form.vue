@@ -19,7 +19,6 @@
                 :type="form.type"
                 :placeholder="form.placeholder"
                 v-model="formData[form.prop]"
-                @change="handleChange"
                 style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
                 autosize></el-input>
             <template v-if="form.type === 'radio'">
