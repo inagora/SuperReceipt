@@ -4,6 +4,7 @@
             <x-button 
                 :key="index"
                 :conf="btn"
+                v-show="btnVisible(btn)"
                 @click="triggerClick($event, btn)"></x-button>
         </template>
     </div>
@@ -38,6 +39,13 @@ export default {
                 btn.change(e);
             } else {
                 btn.click();
+            }
+        },
+        btnVisible(btn) {
+            if(btn.visible instanceof Function) {
+                return btn.visible();
+            } else {
+                return btn.visible || typeof btn.visible === 'undefined';
             }
         }
     }

@@ -20,6 +20,9 @@
                     text: '暂存',
                     type: 'warning',
                     style: 'border-radius: 0;',
+                    visible: function() {
+                        return false;
+                    },
                     click: function() {
                        superReceipt.config.isEditable = true;
                     }
@@ -163,6 +166,7 @@
                 labeltest: '111111'
             },
             table: {
+                isShowIndex: true,
                 // 表格列
                 columns: [
                     {
@@ -194,7 +198,7 @@
                     {
                         size: 'mini',
                         text: '编辑',
-                        visible: false,
+                        visible: true,
                         click: function(scope) {
                             console.log(scope);
                         }
@@ -227,6 +231,7 @@
                     type: 'success',
                     isImport: true,
                     disabled: true,
+                    visible: false,
                     click: function() {
                         // superReceipt.config.table.tableData = [
                         //     {
@@ -254,12 +259,16 @@
                     text: '打印',
                     type: 'primary',
                     isPrint: true, // 是否是打印按钮
+                    visible: function() {
+                        return false;
+                    },
                     click: function() {
                         
                     }
                 }
             ],
             table1: {
+                isShowIndex: true,
                 // 表格列
                 columns: [
                     {
@@ -275,7 +284,8 @@
                     {
                         prop: 'amount1',
                         label: '数量',
-                        width: '180'
+                        width: '180',
+                        needSum: true
                     }
                 ],
                 // 表格数据
@@ -299,6 +309,9 @@
                         size: 'mini',
                         text: '删除',
                         type: 'danger',
+                        visible: function() {
+                            return false;
+                        },
                         click: function(scope) {
                             console.log(scope);
                             superReceipt.config.table1.tableData.splice(scope.$index, 1);

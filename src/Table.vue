@@ -3,12 +3,19 @@
         <el-table 
             v-if="tableConfig.columns.length > 0"
             :data="tableConfig.tableData"
+            :summary-method="getSummaries"
             show-summary
             border>
+            <el-table-column
+                v-if="tableConfig.isShowIndex"
+                type="index"
+                width="50">
+            </el-table-column>
             <template v-for="(column, index) in tableConfig.columns">
                 <el-table-column
                     :key="index"
                     :label="column.label"
+                    :type="column.needSum"
                     :prop="column.prop">
                 </el-table-column>
             </template>
@@ -18,7 +25,7 @@
                         v-for="(btn, index) in tableConfig.optBtns"
                         :key="index"
                         :conf="btn"
-                        v-show="btn.visible"
+                        v-show="btnVisible(btn)"
                         @click="handleClick(btn, scope)"></x-button>
                 </template>
             </el-table-column>
@@ -64,7 +71,7 @@ export default {
             if(typeof item.visible === 'function') {
                 return item.visible();
             } else {
-                return item.visible;
+                return item.visible || typeof item.visible === 'undefined';
             }
         });
         return {
@@ -76,6 +83,40 @@ export default {
     methods: {
         handleClick(btn, scope) {
             btn.click(scope);
+        },
+        getSummaries(param) {
+            const { columns, data } = param;
+            const sums = [];
+            columns.forEach((column, index) => {
+                if(index === 0) {
+                    sums[index] = '总计';
+                    return;
+                }
+                if(column.type == true) {
+                    const values = data.map(item => Number(item[column.property]));
+                    if(!values.every(value => isNaN(value))) {
+                        sums[index] = values.reduce((prev, curr) => {
+                            const value = Number(curr);
+                            if(!isNaN(value)) {
+                                return prev + curr;
+                            } else {
+                                return prev;
+                            }
+                        }, 0); 
+                    } else {
+                        sums[index] = 'N/A'
+                    }
+                }
+            });
+            return sums;
+        },
+        btnVisible(btn) {
+            console.log(btn.visible);
+            if(btn.visible instanceof Function) {
+                return btn.visible();
+            } else {
+                return btn.visible || typeof btn.visible === 'undefined';
+            }
         }
     }
 }
