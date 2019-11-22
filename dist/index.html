@@ -91,6 +91,30 @@
                     placeholder: '请输入内容',
                     size: 'mini',
                     prop: 'sel',
+                    filterable: true,
+                    options: [
+                        {
+                            value: '选项1',
+                            label: '选项1'
+                        },{
+                            value: '选项2',
+                            label: '选项2'
+                        },{
+                            value: '选项3',
+                            label: '选项3'
+                        }
+                    ],
+                    change(val) { // 当前值
+                        
+                    }
+                },
+                {
+                    type: 'select',
+                    label: '收货人电话',
+                    placeholder: '请输入内容',
+                    size: 'mini',
+                    prop: 'sel',
+                    filterable: false,
                     options: [
                         {
                             value: '选项1',
@@ -169,20 +193,60 @@
                 isShowIndex: true,
                 // 表格列
                 columns: [
-                    {
+                {
                         prop: 'id',
-                        label: 'ID',
-                        width: '180'
+                        label: '商品ID',
+                        width: 50
                     },
                     {
-                        prop: 'name',
-                        label: '姓名',
-                        width: '180'
+                        prop: 'skuid',
+                        label: 'skuid',
+                        width: '100'
                     },
                     {
-                        prop: 'amount1',
+                        prop: 'goods_name',
+                        label: '商品名',
+                        width: '300'
+                    },
+                    {
+                        prop: 'goods_name',
+                        label: '计量单位',
+                        width: '50'
+                    },
+                    {
+                        prop: 'goods_name',
                         label: '数量',
-                        width: '180'
+                        width: '50'
+                    },
+                    {
+                        prop: 'goods_name',
+                        label: '单价',
+                        width: '100'
+                    },
+                    {
+                        prop: 'goods_name',
+                        label: '金额',
+                        width: '100'
+                    },
+                    {
+                        prop: 'goods_name',
+                        label: '本位金币',
+                        width: '100'
+                    },
+                    {
+                        prop: 'goods_name',
+                        label: '增值税',
+                        width: '50'
+                    },
+                    {
+                        prop: 'goods_name',
+                        label: '关税',
+                        width: '50'
+                    },
+                    {
+                        prop: 'goods_name',
+                        label: '消费税',
+                        width: '50'
                     }
                 ],
                 // 表格数据

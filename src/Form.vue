@@ -48,13 +48,14 @@
                 :disabled="form.disabled"
                 :type="form.type"
                 style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
-                value-format="yyyy-MM-dd HH:mm:ss"
+                :value-format="form.format"
                 v-model="formData[form.prop]"></el-date-picker>
             <el-select
                 v-if="form.type === 'select'"
                 :type="form.type"
                 :size="form.size"
                 :disabled="form.disabled"
+                :filterable="form.filterable"
                 v-model="formData[form.prop]"
                 @change="handleChange($event, form)"
                 style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
@@ -157,6 +158,9 @@ export default {
     }
     .el-input__icon {
         line-height: 22px !important;
+    }
+    .el-radio {
+        margin-right: 0;
     }
 }
 </style>
