@@ -47,8 +47,10 @@ export default {
         }
     },
     provide() {
-        let conf = Object.assign({}, this.config);
-        return conf;
+        // let conf = Object.assign({}, this.config);
+        return {
+            config: this.config
+        };
     }
 }
 </script>

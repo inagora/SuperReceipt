@@ -13,7 +13,7 @@
     <script>
         let superReceipt = SuperReceipt.init({
             el: '#app',
-            isEditable: true,
+            isEditable: false,
             tableKeys: ['table', 'table1'], // 多个table
             topToolbar: [
                 {
@@ -21,7 +21,7 @@
                     type: 'warning',
                     style: 'border-radius: 0;',
                     visible: function() {
-                        return false;
+                        return true;
                     },
                     click: function() {
                        superReceipt.config.isEditable = true;

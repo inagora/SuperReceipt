@@ -18,13 +18,13 @@ export default {
         XButton
     },
     inject: {
-        topToolbar: {
+        config: {
             default: []
         }
     },
     data() {
         return {
-            btns: this.topToolbar
+            btns: this.config.topToolbar
         }
     },
     methods: {

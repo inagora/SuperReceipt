@@ -15,7 +15,7 @@
 export default {
     name: 'XTitle',
     inject: {
-        title: {
+        config: {
             default: {}
         }
     },
@@ -40,7 +40,7 @@ export default {
                     titleIcon: ''
                 }
             }
-            let formTitle = Object.assign(defaultTitle, this.title);
+            let formTitle = Object.assign(defaultTitle, this.config.title);
             Object.keys(formTitle).forEach(key => {
                 let titleItem = formTitle[key];
                 if(typeof titleItem === 'string') {
@@ -55,7 +55,7 @@ export default {
         }
     },
     watch: {
-        title: {
+        'config.title': {
             handler(val) {
                 this.titles = this.formatTitle();
             },

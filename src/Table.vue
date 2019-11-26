@@ -50,11 +50,14 @@ export default {
     name: 'xtable',
     props: ['name', 'tableConfig'],
     inject: {
-        table: {
+        // table: {
+        //     default: {}
+        // },
+        // isEditable: {
+        //     default: true
+        // }
+        config: {
             default: {}
-        },
-        isEditable: {
-            default: true
         }
     },
     components: {

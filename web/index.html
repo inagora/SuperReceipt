@@ -13,7 +13,7 @@
     <script>
         let superReceipt = SuperReceipt.init({
             el: '#app',
-            isEditable: true,
+            isEditable: false,
             tableKeys: ['table', 'table1'], // 多个table
             topToolbar: [
                 {
@@ -262,7 +262,7 @@
                     {
                         size: 'mini',
                         text: '编辑',
-                        visible: true,
+                        visible: false,
                         click: function(scope) {
                             console.log(scope);
                         }
@@ -365,6 +365,7 @@
                     {
                         size: 'mini',
                         text: '编辑',
+                        visible: false,
                         click: function(scope) {
                             console.log(scope);
                         }

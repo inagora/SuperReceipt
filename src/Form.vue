@@ -1,5 +1,5 @@
 <template>
-    <el-form v-if="isEditable" class="sr-form" ref="formData" label-position="left" :model="formData">
+    <el-form v-if="config.isEditable" class="sr-form" ref="formData" label-position="left" :model="formData">
         <el-form-item 
             class="sr-form-item" 
             v-for="(form, index) in forms" 
@@ -90,27 +90,26 @@
 export default {
     name: 'xform',
     inject: {
-        form: {
-            default: []
-        },
-        formData: {
+        config: {
             default: {}
-        },
-        isEditable: {
-            default: true
         }
     },
     data() {
         let rules = [];
-        this.form.forEach(item => {
+        this.config.form.forEach(item => {
             let rule = {};
             rule[item.prop] = item.rule;
             rules.push(rule);
         });
         return {
-            forms: this.form,
+            forms: this.config.form,
             inputVal: '',
             rules: rules
+        }
+    },
+    computed: {
+        formData() {
+            return this.config.formData;
         }
     },
     methods: {
@@ -120,6 +119,11 @@ export default {
         },
         handleChange(val, form) {
             form.change && form.change(val);
+        }
+    },
+    watch: {
+        'config.isEditable': function(val) {
+            this.config.isEditable = val;
         }
     }
 }
