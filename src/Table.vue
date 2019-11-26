@@ -133,7 +133,6 @@ export default {
             return sums;
         },
         btnVisible(btn) {
-            console.log(btn.visible);
             if(btn.visible instanceof Function) {
                 return btn.visible();
             } else {
@@ -144,7 +143,6 @@ export default {
             row.seen = true;
         },
         handleEnter(row) {
-            console.log(row);
             row.seen = false;
         }
     }
