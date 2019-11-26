@@ -1,10 +1,12 @@
 <template>
     <div class="sr-table">
         <el-table 
+            class="tb-edit"
             v-if="tableConfig.columns.length > 0"
             :data="tableConfig.tableData"
             :summary-method="getSummaries"
             show-summary
+            @cell-dblclick="handleCellClick"
             border>
             <el-table-column
                 v-if="tableConfig.isShowIndex"
@@ -16,7 +18,24 @@
                     :key="index"
                     :label="column.label"
                     :type="column.needSum"
+                    v-if="column.editable"
+                    header-align="center"
+                    :align="column.align"
                     :prop="column.prop">
+                    <template slot-scope="scope">
+                        <el-input v-if="scope.row.seen" size="mini" @blur="handleBlur(scope.row)" v-model="scope.row[column.prop]"/>
+                        <span v-else>{{scope.row[column.prop]}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column
+                    :key="index"
+                    :label="column.label"
+                    :type="column.needSum"
+                    v-else
+                    :prop="column.prop">
+                    <template slot-scope="scope">
+                        <span>{{scope.row[column.prop]}}</span>
+                    </template>
                 </el-table-column>
             </template>
             <el-table-column class="column-opt" v-if="tableConfig.optBtns.length > 0 && isShowOptBtns" label="操作">
@@ -120,6 +139,12 @@ export default {
             } else {
                 return btn.visible || typeof btn.visible === 'undefined';
             }
+        },
+        handleCellClick(row, column, cell, event) {
+            row.seen = true;
+        },
+        handleBlur(row) {
+            row.seen = false;
         }
     }
 }
@@ -143,5 +168,14 @@ export default {
     .cell {
         font-size: 12px;
     }
+    // .tb-edit .el-input {
+    //     display: none;
+    // }
+    // .tb-edit .current-row .el-input {
+    //     display: block;
+    // }
+    // .tb-edit .current-row .el-input+span {
+    //     display: none;
+    // }
 }
 </style>

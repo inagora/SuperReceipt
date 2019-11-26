@@ -13,7 +13,7 @@
     <script>
         let superReceipt = SuperReceipt.init({
             el: '#app',
-            isEditable: false,
+            isEditable: true,
             tableKeys: ['table', 'table1'], // 多个table
             topToolbar: [
                 {
@@ -32,7 +32,7 @@
                     type: 'success',
                     style: 'border-radius: 0;',
                     click: function() {
-                        superReceipt.config.title.middle.titleIcon = '待审批';
+                        console.log(superReceipt.config.table1.tableData);
                     }
                 },
                 {
@@ -329,6 +329,19 @@
                     click: function() {
                         
                     }
+                },
+                {
+                    text: '增行',
+                    type: 'primary',
+                    click: function() {
+                        let obj = {
+                            id: '',
+                            name: '',
+                            amount1: '',
+                            seen: true
+                        };
+                        superReceipt.config.table1.tableData = superReceipt.config.table1.tableData.concat(obj);
+                    }
                 }
             ],
             table1: {
@@ -338,18 +351,24 @@
                     {
                         prop: 'id',
                         label: 'ID',
-                        width: '180'
+                        width: '180',
+                        
                     },
                     {
                         prop: 'name',
                         label: '姓名',
-                        width: '180'
+                        width: '180',
+                        seen: true,
+                        editable: true,
                     },
                     {
                         prop: 'amount1',
                         label: '数量',
                         width: '180',
-                        needSum: true
+                        needSum: true,
+                        seen: true,
+                        editable: true,
+                        align: 'right'
                     }
                 ],
                 // 表格数据
@@ -357,7 +376,26 @@
                     {
                         id: 1,
                         name: 'niu2',
-                        amount1: 10
+                        amount1: 10,
+                        seen: false
+                    },
+                    {
+                        id: 1,
+                        name: '商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名',
+                        amount1: 10,
+                        seen: false
+                    },
+                    {
+                        id: 1,
+                        name: 'niu2',
+                        amount1: 10,
+                        seen: false
+                    },
+                    {
+                        id: 1,
+                        name: 'niu2',
+                        amount1: 10,
+                        seen: false
                     }
                 ],
                 // 操作按钮
