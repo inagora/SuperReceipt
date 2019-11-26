@@ -23,7 +23,7 @@
                     :align="column.align"
                     :prop="column.prop">
                     <template slot-scope="scope">
-                        <el-input v-if="scope.row.seen" size="mini" @blur="handleBlur(scope.row)" v-model="scope.row[column.prop]"/>
+                        <el-input v-if="scope.row.seen" size="mini" @keyup.enter.native="handleEnter(scope.row)" v-model="scope.row[column.prop]"/>
                         <span v-else>{{scope.row[column.prop]}}</span>
                     </template>
                 </el-table-column>
@@ -143,7 +143,8 @@ export default {
         handleCellClick(row, column, cell, event) {
             row.seen = true;
         },
-        handleBlur(row) {
+        handleEnter(row) {
+            console.log(row);
             row.seen = false;
         }
     }
