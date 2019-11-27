@@ -9,7 +9,7 @@
             :prop="form.prop"
             :show-message="false"
             :inline-message="true"
-            label-width="100px"
+            label-width="120px"
             style="display: flex"
             :label="form.label">
             <el-input 
@@ -137,9 +137,8 @@ export default {
     width: 85%;
     margin: 30px auto;
     &-item {
-        width: 300px;
+        width: 33%;
         display: flex;
-        margin-right: 40px;
     }
     .el-form-item__content {
         margin-left: 10px !important;
