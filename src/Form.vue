@@ -154,6 +154,7 @@ export default {
         line-height: 22px !important;
         height: 22px;
         font-size: 12px;
+        padding-left: 5px;
     }
     .el-input--mini .el-input__inner {
         height: 22px;
