@@ -51,6 +51,12 @@
         </el-table>
         <iframe id="printf" src="" width="0" height="0" frameborder="0" style="display: none;">
             <div class="print-content">
+                <div style="display: flex; flex-wrap: wrap; margin-bottom: 20px;">
+                    <div v-for="(item, index) in config.form" :key="index" style="width: 50%; display: inline-block;">
+                        <label style="width: 100px; display: inline-block; text-align: left; margin-right: 10px;">{{item.label}}</label>
+                        <label>{{formatValue(item)}}</label>
+                    </div>
+                </div>
                 <table class="print-table" cellspacing="0" cellpadding="0" width="100%" style="border: 1px solid #EBEEF5;">
                     <tr class="print-table-head" style="color: #909399; font-weight: 500;">
                         <td style="padding: 12px 10px; border-bottom: 1px solid #EBEEF5; border-right: 1px solid #EBEEF5;" v-for="(item, index) in printData" :key="index">{{item.label}}</td>
@@ -100,6 +106,17 @@ export default {
             tableConfig,
             printData,
             isShowOptBtns: isShowOptBtns
+        }
+    },
+    computed: {
+        formatValue() {
+            return function(propItem) {
+                let val = this.config.formData[propItem.prop];
+                if(propItem.type === 'radio' || propItem.type === 'switch' || propItem.type === 'checkbox') {
+                    return val ? '是' : '否';
+                }
+                return this.config.formData[propItem.prop]
+            }
         }
     },
     methods: {

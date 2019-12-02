@@ -297,23 +297,23 @@
                     disabled: true,
                     visible: false,
                     click: function() {
-                        // superReceipt.config.table.tableData = [
-                        //     {
-                        //         id: 1,
-                        //         name: 'niu',
-                        //         amount1: 10
-                        //     },
-                        //     {
-                        //         id: 2,
-                        //         name: 'niu2',
-                        //         amount1: 50
-                        //     },
-                        //     {
-                        //         id: 3,
-                        //         name: 'niu3',
-                        //         amount1: 10
-                        //     }   
-                        // ]
+                        superReceipt.config.table.tableData = [
+                            {
+                                id: 1,
+                                name: 'niu',
+                                amount1: 10
+                            },
+                            {
+                                id: 2,
+                                name: 'niu2',
+                                amount1: 50
+                            },
+                            {
+                                id: 3,
+                                name: 'niu3',
+                                amount1: 10
+                            }   
+                        ]
                     },
                     change(e) {
                         console.log(e);
@@ -324,7 +324,7 @@
                     type: 'primary',
                     isPrint: true, // 是否是打印按钮
                     visible: function() {
-                        return false;
+                        return true;
                     },
                     click: function() {
                         
