@@ -80,7 +80,7 @@
             :inline-message="true"
             label-width="100px"
             :label="form.label">
-            <div v-if="form.type === 'radio' || form.type === 'switch' || form.type === 'checkbox'">{{formData[form.prop] ? '是' : '否'}}</div>
+            <div v-if="form.type === 'radio' || form.type === 'switch' || form.type === 'checkbox'">{{formData[form.prop] == '0' || formData[form.prop] == false ? '否' : '是'}}</div>
             <div v-else v-text="formData[form.prop]"></div>
         </el-form-item>
     </el-form>

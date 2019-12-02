@@ -113,7 +113,7 @@ export default {
             return function(propItem) {
                 let val = this.config.formData[propItem.prop];
                 if(propItem.type === 'radio' || propItem.type === 'switch' || propItem.type === 'checkbox') {
-                    return val ? '是' : '否';
+                    return val == '0' || val == false ? '否' : '是';
                 }
                 return this.config.formData[propItem.prop]
             }

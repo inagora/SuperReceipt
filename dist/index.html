@@ -13,7 +13,7 @@
     <script>
         let superReceipt = SuperReceipt.init({
             el: '#app',
-            isEditable: true,
+            isEditable: false,
             tableKeys: ['table', 'table1'], // 多个table
             topToolbar: [
                 {
@@ -158,12 +158,12 @@
                     label: '单选按钮',
                     radios: [
                         {
-                            label: 1,
-                            text: '选项1'
+                            label: 0,
+                            text: '否'
                         },
                         {
-                            label: 2,
-                            text: '选项2'
+                            label: 1,
+                            text: '是'
                         }
                     ]
                 },
@@ -184,7 +184,7 @@
                 phone: '2123',
                 address: '14',
                 stime: '2019-08-06 08:09:00',
-                radio: 0,
+                radio: '',
                 switch: true,
                 checkbox: true,
                 labeltest: '111111'
@@ -423,6 +423,9 @@
                 ]
             },
         });
+        setTimeout(() => {
+            superReceipt.config.formData.radio = 0;
+        }, 2000);
     </script>
 <script type="text/javascript" src="/js/SuperReceipt.min.js"></script></body>
 </html>
