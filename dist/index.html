@@ -191,6 +191,10 @@
             },
             table: {
                 isShowIndex: true,
+                title: {
+                    text: '这里是title',
+                    align: 'center'
+                },
                 // 表格列
                 columns: [
                 {
@@ -346,6 +350,11 @@
             ],
             table1: {
                 isShowIndex: true,
+                title: {
+                    text: '这里是title2',
+                    align: 'left'
+                },
+                isShowSummary: true,
                 // 表格列
                 columns: [
                     {
@@ -357,9 +366,13 @@
                     {
                         prop: 'name',
                         label: '姓名',
-                        width: '180',
+                        width: '300',
                         seen: true,
                         editable: true,
+                        change(row) {
+                            console.log(row);
+                            row.amount1 = row.amount1 * 2;
+                        }
                     },
                     {
                         prop: 'amount1',
@@ -368,7 +381,8 @@
                         needSum: true,
                         seen: true,
                         editable: true,
-                        align: 'right'
+                        align: 'right',
+                        fixed2: 2
                     }
                 ],
                 // 表格数据
@@ -382,19 +396,7 @@
                     {
                         id: 1,
                         name: '商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名商品名',
-                        amount1: 10,
-                        seen: false
-                    },
-                    {
-                        id: 1,
-                        name: 'niu2',
-                        amount1: 10,
-                        seen: false
-                    },
-                    {
-                        id: 1,
-                        name: 'niu2',
-                        amount1: 10,
+                        amount1:20,
                         seen: false
                     }
                 ],

@@ -1,11 +1,14 @@
 <template>
     <div class="sr-table">
+        <div class="sr-table-title" v-if="tableConfig.title" :style="{'text-align': tableConfig.title.align}">
+            {{tableConfig.title.text}}
+        </div>
         <el-table 
             class="tb-edit"
             v-if="tableConfig.columns.length > 0"
             :data="tableConfig.tableData"
             :summary-method="getSummaries"
-            show-summary
+            :show-summary="tableConfig.isShowSummary"
             @cell-dblclick="handleCellClick"
             border>
             <el-table-column
@@ -21,9 +24,10 @@
                     v-if="column.editable"
                     header-align="center"
                     :align="column.align"
-                    :prop="column.prop">
+                    :prop="column.prop"
+                    :width="column.width">
                     <template slot-scope="scope">
-                        <el-input v-if="scope.row.seen" size="mini" @keyup.enter.native="handleEnter(scope.row)" v-model="scope.row[column.prop]"/>
+                        <el-input v-if="scope.row.seen" size="mini" @keyup.enter.native="handleEnter(scope.row, column.change)" v-model="scope.row[column.prop]"/>
                         <span v-else>{{scope.row[column.prop]}}</span>
                     </template>
                 </el-table-column>
@@ -31,6 +35,7 @@
                     :key="index"
                     :label="column.label"
                     :type="column.needSum"
+                    :width="column.width"
                     v-else
                     :prop="column.prop">
                     <template slot-scope="scope">
@@ -141,9 +146,10 @@ export default {
                             } else {
                                 return prev;
                             }
-                        }, 0); 
+                        }, 0);
+                        sums[index] = parseFloat(sums[index].toFixed(2)); 
                     } else {
-                        sums[index] = 'N/A'
+                        sums[index] = '0'
                     }
                 }
             });
@@ -159,8 +165,9 @@ export default {
         handleCellClick(row, column, cell, event) {
             row.seen = true;
         },
-        handleEnter(row) {
+        handleEnter(row, change) {
             row.seen = false;
+            change && change(row);
         }
     }
 }
@@ -183,6 +190,11 @@ export default {
     }
     .cell {
         font-size: 12px;
+    }
+    &-title {
+        height: 36px;
+        line-height: 36px;
+        color: #666666;
     }
     // .tb-edit .el-input {
     //     display: none;
