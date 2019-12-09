@@ -5,7 +5,7 @@
         :disabled="conf.disabled"
         :style="conf.style"
         @click="$emit('click')">{{conf.text}}</button>
-    <div v-else>
+    <div v-else class="sr-btn-container">
         <input
             type="file"
             :visible="conf.disabled"
@@ -93,6 +93,9 @@ export default {
 </script>
 
 <style lang="scss">
+    .sr-btn-container {
+        position: relative;
+    }
     .sr-btn{
         display: flex;
         align-items: center;
@@ -226,8 +229,9 @@ export default {
     }
     .sr-input {
         position: absolute;
-        width: 30px;
+        width: 100%;
         opacity: 0;
+        padding: 0;
     }
 </style>
 
