@@ -134,8 +134,8 @@ export default {
     justify-content: flex-start;
     margin-top: 30px;
     flex-wrap: wrap;
-    width: 85%;
-    margin: 30px auto;
+    width: 100%;
+    margin: 30px 0;
     &-item {
         width: 33%;
         display: flex;
@@ -143,8 +143,7 @@ export default {
     .el-form-item__content {
         margin-left: 10px !important;
         width: 200px;
-        line-height: 22px !important; 
-        height: 22px;
+        line-height: 22px !important;
         margin-bottom: 3px;
     }
     .el-form-item {
