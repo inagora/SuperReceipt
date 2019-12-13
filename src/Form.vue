@@ -145,6 +145,7 @@ export default {
         width: 200px;
         line-height: 22px !important;
         margin-bottom: 3px;
+        font-size: 12px;
     }
     .el-form-item {
         margin-bottom: 0px;

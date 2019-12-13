@@ -11,10 +11,14 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16"></script>
     <script src="./js/SuperReceipt.min.js"></script>
     <script>
+        setTimeout(() => {
+            superReceipt.config.loading = false;
+        }, 2000);
         let superReceipt = SuperReceipt.init({
             el: '#app',
             isEditable: false,
             tableKeys: ['table', 'table1'], // 多个table
+            loading: true,
             topToolbar: [
                 {
                     text: '暂存',
