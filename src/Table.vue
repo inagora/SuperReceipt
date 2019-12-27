@@ -10,6 +10,7 @@
             :summary-method="getSummaries"
             :show-summary="tableConfig.isShowSummary"
             @cell-dblclick="handleCellClick"
+            :header-cell-style="tableConfig.headerStyle"
             border>
             <el-table-column
                 v-if="tableConfig.isShowIndex"
@@ -36,6 +37,7 @@
                     :label="column.label"
                     :type="column.needSum"
                     :width="column.width"
+                    :align="column.align"
                     v-else
                     :prop="column.prop">
                     <template slot-scope="scope">
