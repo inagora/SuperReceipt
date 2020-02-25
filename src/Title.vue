@@ -3,7 +3,9 @@
         <div class="sr-title-content sr-title-left">{{titles.left.titleText}}</div>
         <div class="sr-title-content sr-title-middle">
             {{titles.middle.titleText}}
-            <span class="sr-title-content-icon sr-title-middle-icon" v-if="titles.middle.titleIcon">{{titles.middle.titleIcon}}</span>
+            <template v-if="titles.middle.titleIcon">
+                <span class="sr-title-content-icon sr-title-middle-icon" v-for="(item, index) in titles.middle.titleIcon" :key="index">{{item}}</span>
+            </template>
         </div>
         <div class="sr-title-content sr-title-right">{{titles.right.titleText}}</div>
         <el-form>
@@ -49,6 +51,10 @@ export default {
                         titleIcon: ''
                     }
                     formTitle[key] = titleObj;
+                } else if(typeof titleItem.titleIcon === 'string') {
+                    let arr = [];
+                    arr.push(titleItem.titleIcon);
+                    titleItem.titleIcon = arr;
                 }
             });
             return formTitle;
@@ -93,6 +99,7 @@ export default {
             border: 1px solid red;
             padding: 3px 10px;
             border-radius: 5px;
+            margin-right: 10px;
         }
     }
 }
