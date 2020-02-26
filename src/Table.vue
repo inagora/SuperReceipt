@@ -15,6 +15,7 @@
             <el-table-column
                 v-if="tableConfig.isShowIndex"
                 type="index"
+                label="NO"
                 width="50">
             </el-table-column>
             <template v-for="(column, index) in tableConfig.columns">
