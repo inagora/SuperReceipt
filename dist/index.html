@@ -16,9 +16,9 @@
         }, 2000);
         let superReceipt = SuperReceipt.init({
             el: '#app',
-            isEditable: false,
+            isEditable: true,
             tableKeys: ['table', 'table1'], // 多个table
-            loading: true,
+            loading: false,
             topToolbar: [
                 {
                     text: '暂存',
@@ -36,7 +36,7 @@
                     type: 'success',
                     style: 'border-radius: 0;',
                     click: function() {
-                        console.log(superReceipt.config.table1.tableData);
+                        console.log(superReceipt.config.formData);
                     }
                 },
                 {
@@ -143,6 +143,66 @@
                     size: 'mini',
                 },
                 {
+                    type: 'address',
+                    label: '收货人地址',
+                    placeholder: '请输入内容',
+                    prop: 'address',
+                    size: 'mini',
+                    input: {
+                        type: 'input',
+                        label: '收货人电话',
+                        placeholder: '请输入内容',
+                        prop: 'phone',
+                        size: 'mini',
+                    },
+                    selects: [
+                        {
+                            type: 'select',
+                            placeholder: '请选择省',
+                            size: 'mini',
+                            prop: 'province',
+                            filterable: false,
+                            options: [
+                                {
+                                    value: '选项1',
+                                    label: '选项1'
+                                },{
+                                    value: '选项2',
+                                    label: '选项2'
+                                },{
+                                    value: '选项3',
+                                    label: '选项3'
+                                }
+                            ],
+                            change(val) { // 当前值
+                                
+                            }
+                        },
+                        {
+                            type: 'select',
+                            placeholder: '请选择市',
+                            size: 'mini',
+                            prop: 'city',
+                            filterable: false,
+                            options: [
+                                {
+                                    value: '选项4',
+                                    label: '选项4'
+                                },{
+                                    value: '选项5',
+                                    label: '选项5'
+                                },{
+                                    value: '选项6',
+                                    label: '选项6'
+                                }
+                            ],
+                            change(val) { // 当前值
+                                
+                            }
+                        },
+                    ]
+                },
+                {
                     type: 'input',
                     label: '收货人电话',
                     placeholder: '请输入内容',
@@ -191,7 +251,9 @@
                 radio: '',
                 switch: true,
                 checkbox: true,
-                labeltest: '111111'
+                labeltest: '111111',
+                province: '北京',
+                city: '朝阳'
             },
             table: {
                 isShowIndex: true,

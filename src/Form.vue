@@ -1,7 +1,7 @@
 <template>
     <el-form v-if="config.isEditable" class="sr-form" ref="formData" label-position="left" :model="formData">
         <el-form-item 
-            class="sr-form-item" 
+            :class="['sr-form-item', form.type]" 
             v-for="(form, index) in forms" 
             :key="index" 
             :required="form.isRequired"
@@ -66,6 +66,35 @@
                     :label="option.label"
                     :value="option.value"></el-option>    
             </el-select>
+            <template v-if="form.type === 'address'">
+                <el-select
+                    v-for="(select, index) in form.selects"
+                    :key="index"
+                    :type="select.type"
+                    :size="select.size"
+                    :inline="false"
+                    :disabled="select.disabled"
+                    :filterable="select.filterable"
+                    v-model="formData[select.prop]"
+                    @change="handleChange($event, select)"
+                    :style="{flex: 1, width: '100px', height: '22px', 'line-height': '22px', 'margin-right': '10px'}"
+                    :placeholder="select.placeholder">
+                    <el-option
+                        v-for="option in select.options"
+                        :key="option.value"
+                        :label="option.label"
+                        :value="option.value"></el-option>    
+                </el-select>
+                <el-input 
+                    v-if="form.input"
+                    :size="form.input.size"
+                    :disabled="form.input.disabled"
+                    :type="form.input.type"
+                    :placeholder="form.input.placeholder"
+                    v-model="formData[form.input.prop]"
+                    style="flex: 1; width: 300px; height: 22px; line-height: 22px;"
+                    autosize></el-input>
+            </template>
             <div v-if="['text', 'label'].includes(form.type)" v-html="formData[form.prop]"></div>
         </el-form-item>
     </el-form>
@@ -166,6 +195,15 @@ export default {
     .el-radio {
         margin-right: 0;
     }
+}
+.address {
+    display: block;
+    width: 100%;
+    margin-top: 8px;
+}
+.address .el-form-item__content {
+    width: auto !important;
+    margin-left: 0 !important;
 }
 </style>
 
