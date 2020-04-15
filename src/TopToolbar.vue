@@ -1,5 +1,5 @@
 <template>
-    <div class="sr-top-toolbar">
+    <div class="sr-top-toolbar" :style="{'justify-content': formatTopToolbarAlign}">
         <template v-for="(btn, index) in btns">
             <x-button 
                 :key="index"
@@ -25,6 +25,25 @@ export default {
     data() {
         return {
             btns: this.config.topToolbar
+        }
+    },
+    computed: {
+        formatTopToolbarAlign() {
+            let align = 'flex-start';
+            switch(this.config.topToolbarAlign) {
+                case 'left':
+                    align = 'flex-start';
+                    break;
+                case 'center':
+                    align = 'center';
+                    break;
+                case 'right':
+                    align = 'flex-end';
+                    break;
+                default: 
+                    align = 'flex-start';
+            }
+            return align;
         }
     },
     methods: {

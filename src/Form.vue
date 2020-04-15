@@ -11,6 +11,7 @@
             :inline-message="true"
             label-width="120px"
             style="display: flex"
+            v-show="formVisible(form)"
             :label="form.label">
             <el-input 
                 v-if="['input', 'textarea', 'button', 'number', 'password'].includes(form.type)"
@@ -66,6 +67,17 @@
                     :label="option.label"
                     :value="option.value"></el-option>    
             </el-select>
+            <el-cascader
+                v-if="form.type === 'cascader'"
+                :type="form.type"
+                :size="form.size"
+                :disabled="form.disabled"
+                v-model="formData[form.prop]"
+                :options="form.options"
+                @change="handleChange($event, form)"
+                style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
+                :placeholder="form.placeholder">   
+            </el-cascader>
             <template v-if="form.type === 'address'">
                 <el-select
                     v-for="(select, index) in form.selects"
@@ -148,6 +160,13 @@ export default {
         },
         handleChange(val, form) {
             form.change && form.change(val);
+        },
+        formVisible(form) {
+            if(form.visible instanceof Function) {
+                return form.visible();
+            } else {
+                return form.visible || typeof form.visible === 'undefined';
+            }
         }
     },
     watch: {

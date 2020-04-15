@@ -1,5 +1,5 @@
 <template>
-    <div class="sr-bottom-toolbar">
+    <div class="sr-bottom-toolbar" :style="{'justify-content': formatBottomToolbarAlign}">
         <template v-for="(btn, index) in btns">
             <x-button 
                 :key="index"
@@ -25,6 +25,25 @@ export default {
     data() {
         return {
             btns: this.config.bottomToolbar
+        }
+    },
+    computed: {
+        formatBottomToolbarAlign() {
+            let align = 'flex-end';
+            switch(this.config.bottomToolbarAlign) {
+                case 'left':
+                    align = 'flex-start';
+                    break;
+                case 'center':
+                    align = 'center';
+                    break;
+                case 'right':
+                    align = 'flex-end';
+                    break;
+                default: 
+                    align = 'flex-end';
+            }
+            return align;
         }
     },
     methods: {

@@ -19,6 +19,8 @@
             isEditable: true,
             tableKeys: ['table', 'table1'], // 多个table
             loading: false,
+            topToolbarAlign: 'right',
+            bottomToolbarAlign: 'center',
             topToolbar: [
                 {
                     text: '暂存',
@@ -61,11 +63,41 @@
             // form 表单项
             form: [
                 {
+                    type: 'cascader',
+                    label: '级联',
+                    placeholder: '选择内容',
+                    size: 'mini',
+                    prop: 'cascader',
+                    filterable: true,
+                    options: [
+                        {
+                            value: '选项1',
+                            label: '选项1',
+                            children: [
+                                {
+                                    value: '选项1',
+                                    label: '选项1',
+                                }
+                            ]
+                        },{
+                            value: '选项2',
+                            label: '选项2'
+                        },{
+                            value: '选项3',
+                            label: '选项3'
+                        }
+                    ],
+                    change(val) { // 当前值
+                        console.log('hhhh');
+                    }
+                },
+                {
                     type: 'input',
                     label: '公司实体',
                     placeholder: '请输入内容',
                     size: 'mini',
                     prop: 'com',
+                    visible: false,
                     isRequired: true,
                 },
                 {

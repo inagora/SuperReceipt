@@ -9,7 +9,8 @@ import {
     TableColumn,
     Radio,
     Switch,
-    Checkbox
+    Checkbox,
+    Cascader
 } from 'element-ui';
 
 Vue.use(Form);
@@ -23,3 +24,4 @@ Vue.use(TableColumn);
 Vue.use(Radio);
 Vue.use(Switch);
 Vue.use(Checkbox);
+Vue.use(Cascader);
