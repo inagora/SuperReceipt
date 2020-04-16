@@ -11,6 +11,7 @@
             :show-summary="tableConfig.isShowSummary"
             @cell-dblclick="handleCellClick"
             :header-cell-style="tableConfig.headerStyle"
+            :row-style="rowStyle"
             border>
             <el-table-column
                 v-if="tableConfig.isShowIndex"
@@ -177,6 +178,9 @@ export default {
                 row.seen = false;
                 change && change(row);
             }
+        },
+        rowStyle({row, rowIndex}) {
+            return row.style;
         }
     }
 }
