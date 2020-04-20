@@ -14,14 +14,25 @@
             v-show="formVisible(form)"
             :label="form.label">
             <el-input 
-                v-if="['input', 'textarea', 'button', 'number', 'password'].includes(form.type)"
+                v-if="['input', 'button', 'number', 'password'].includes(form.type)"
                 :size="form.size"
                 :disabled="form.disabled"
                 :type="form.type"
+                :rows="2"
                 :placeholder="form.placeholder"
                 v-model="formData[form.prop]"
-                style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
-                autosize></el-input>
+                style="flex: 1; width: 100%; height: 22px; line-height: 22px;"></el-input>
+            <el-input 
+                v-if="form.type === 'textarea'"
+                :size="form.size"
+                :disabled="form.disabled"
+                :type="form.type"
+                :rows="form.rows"
+                :resize="form.resize"
+                :placeholder="form.placeholder"
+                v-model="formData[form.prop]"
+                style="flex: 1; width: 100%; line-height: 22px;"
+                :autosize="form.autosize"></el-input>
             <template v-if="form.type === 'radio'">
                 <el-radio 
                     v-for="(radio, index) in form.radios"
