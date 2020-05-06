@@ -47,7 +47,7 @@
                     </template>
                 </el-table-column>
             </template>
-            <el-table-column class="column-opt" v-if="tableConfig.optBtns.length > 0 && isShowOptBtns" label="操作">
+            <el-table-column class="column-opt" :width="tableConfig.optColumnsConf.width" v-if="tableConfig.optBtns.length > 0 && isShowOptBtns" :label="tableConfig.optColumnsConf.label">
                 <template slot-scope="scope">
                     <x-button 
                         v-for="(btn, index) in tableConfig.optBtns"
