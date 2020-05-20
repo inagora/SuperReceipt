@@ -57,7 +57,7 @@
                         @click="handleClick(btn, scope)"></x-button>
                 </template>
             </el-table-column>
-            <el-table-column class="column-opt" v-if="tableConfig.optBtns.length > 0 && isShowOptBtns" label="操作">
+            <el-table-column class="column-opt" v-if="tableConfig.optBtns.length > 0 && isShowOptBtns && !tableConfig.optColumnsConf" label="操作">
                 <template slot-scope="scope">
                     <x-button 
                         v-for="(btn, index) in tableConfig.optBtns"
