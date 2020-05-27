@@ -97,8 +97,10 @@
                     placeholder: '请输入内容',
                     size: 'mini',
                     prop: 'com',
-                    visible: false,
                     isRequired: true,
+                    change(val) {
+                        console.log(val);
+                    }
                 },
                 {
                     type: 'input',

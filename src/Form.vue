@@ -21,6 +21,7 @@
                 :rows="2"
                 :placeholder="form.placeholder"
                 v-model="formData[form.prop]"
+                @keyup.enter.native="handleEnter(form)"
                 style="flex: 1; width: 100%; height: 22px; line-height: 22px;"></el-input>
             <el-input 
                 v-if="form.type === 'textarea'"
@@ -179,6 +180,9 @@ export default {
             } else {
                 return form.visible || typeof form.visible === 'undefined';
             }
+        },
+        handleEnter(form) {
+            form.change && form.change(this.formData[form.prop]);
         }
     },
     watch: {
