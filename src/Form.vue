@@ -22,6 +22,7 @@
                 :placeholder="form.placeholder"
                 v-model="formData[form.prop]"
                 @keyup.enter.native="handleEnter(form)"
+                @blur="handleBlur($event, form)"
                 style="flex: 1; width: 100%; height: 22px; line-height: 22px;"></el-input>
             <el-input 
                 v-if="form.type === 'textarea'"
@@ -183,6 +184,11 @@ export default {
         },
         handleEnter(form) {
             form.change && form.change(this.formData[form.prop]);
+        },
+        handleBlur(ctx, form) {
+            if(ctx.relatedTarget == null) {
+                form.change && form.change(this.formData[form.prop]);
+            }
         }
     },
     watch: {
