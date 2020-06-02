@@ -5,6 +5,7 @@
         </div>
         <el-table 
             class="tb-edit"
+            ref="table"
             v-if="tableConfig.columns.length > 0"
             :data="tableConfig.tableData"
             :summary-method="getSummaries"
@@ -12,7 +13,14 @@
             @cell-dblclick="handleCellClick"
             :header-cell-style="tableConfig.headerStyle"
             :row-style="rowStyle"
+            :empty-text="tableConfig.emptyText"
+            @selection-change="handleSelectionChange"
             border>
+            <el-table-column
+                v-if="tableConfig.isSelect"
+                type="selection"
+                width="55">
+            </el-table-column>
             <el-table-column
                 v-if="tableConfig.isShowIndex"
                 type="index"
@@ -26,6 +34,7 @@
                     :type="column.needSum"
                     v-if="column.editable"
                     header-align="center"
+                    class-name="edit-style"
                     :align="column.align"
                     :prop="column.prop"
                     :width="column.width">
@@ -106,6 +115,11 @@ export default {
     },
     components: {
         XButton
+    },
+    mounted() {
+        // this.tableConfig.tableData.forEach(row => {
+        //     this.$refs.table.toggleRowSelection(row);
+        // })
     },
     data() {
         let tableName = this.name;
@@ -191,6 +205,9 @@ export default {
         },
         rowStyle({row, rowIndex}) {
             return row.style;
+        },
+        handleSelectionChange(val) {
+            this.tableConfig.selectChange && this.tableConfig.selectChange(val);
         }
     }
 }
@@ -228,5 +245,11 @@ export default {
     // .tb-edit .current-row .el-input+span {
     //     display: none;
     // }
+    .edit-style {
+        background-color: lightyellow;
+    }
+    .is-leaf {
+        background-color: #ffffff;
+    }
 }
 </style>

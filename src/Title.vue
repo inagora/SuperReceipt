@@ -6,6 +6,9 @@
             <template v-if="titles.middle.titleIcon">
                 <span class="sr-title-content-icon sr-title-middle-icon" v-for="(item, index) in titles.middle.titleIcon" :key="index">{{item}}</span>
             </template>
+            <template v-if="titles.middle.subTitle">
+                <span class="sr-title-content sr-title-subtitle">{{titles.middle.subTitle}}</span>
+            </template>
         </div>
         <div class="sr-title-content sr-title-right">{{titles.right.titleText}}</div>
         <el-form>
@@ -88,6 +91,12 @@ export default {
     }
     &-right {
         text-align: right;
+    }
+    &-subtitle {
+        display: block;
+        height: 20px;
+        line-height: 20px;
+        margin-top: -10px;
     }
     &-middle {
         flex: 1;

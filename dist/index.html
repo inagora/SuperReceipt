@@ -39,6 +39,7 @@
                     style: 'border-radius: 0;',
                     click: function() {
                         console.log(superReceipt.config.formData);
+                        console.log(superReceipt.config.table1.tableData);
                     }
                 },
                 {
@@ -56,7 +57,8 @@
                 left: '左边标题',
                 middle: {
                     titleText: '采购入库申请单',
-                    titleIcon: ['待推送', 'title2']
+                    titleIcon: ['待推送', 'title2'],
+                    subTitle: '123'
                 },
                 right: 'NO: 201907001'
             },
@@ -296,6 +298,9 @@
             },
             table: {
                 isShowIndex: true,
+                isSelect: true,
+                isSelectAll: true,
+                emptyText: '数据呢',
                 title: {
                     text: '这里是title',
                     align: 'center'
@@ -457,6 +462,8 @@
             ],
             table1: {
                 isShowIndex: true,
+                isSelect: true,
+                isSelectAll: true,
                 title: {
                     text: '这里是title2',
                     align: 'left'
@@ -466,6 +473,9 @@
                 //     width: '30px'
                 // },
                 isShowSummary: true,
+                selectChange(val) {
+                    
+                },
                 // 表格列
                 columns: [
                     {
