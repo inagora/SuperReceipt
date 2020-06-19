@@ -42,6 +42,7 @@
                     :size="form.size"
                     :disabled="form.disabled"
                     :label="radio.label"
+                    @change="handleChange($event, form)"
                     :key="index">{{radio.text}}</el-radio>
             </template>
             <el-switch
@@ -55,6 +56,7 @@
                 :size="form.size"
                 :disabled="form.disabled"
                 style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
+                @change="handleChange($event, form)"
                 v-model="formData[form.prop]"></el-checkbox>
             <el-date-picker
                 v-if="['datetime', 'date'].includes(form.type)"
