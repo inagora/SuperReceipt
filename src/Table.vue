@@ -39,7 +39,7 @@
                     :prop="column.prop"
                     :width="column.width">
                     <template slot-scope="scope">
-                        <el-input v-if="scope.row.seen" size="mini" @blur="handleBlur($event, scope.row, column.change)" @keyup.enter.native="handleEnter(scope.row, column.change)" v-model="scope.row[column.prop]"/>
+                        <el-input v-if="scope.row.seen" size="mini" :type="column.inputType" @blur="handleBlur($event, scope.row, column.change)" @keyup.enter.native="handleEnter(scope.row, column.change)" v-model="scope.row[column.prop]"/>
                         <span v-else v-html="scope.row[column.prop]"></span>
                     </template>
                 </el-table-column>
