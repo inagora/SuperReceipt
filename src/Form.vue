@@ -88,6 +88,7 @@
                 :size="form.size"
                 :disabled="form.disabled"
                 v-model="formData[form.prop]"
+                :filterable="form.filterable"
                 :options="form.options"
                 @change="handleChange($event, form)"
                 style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
