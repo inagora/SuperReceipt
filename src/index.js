@@ -15,7 +15,8 @@ export function init(config, Vue) {
         console.log('The container is not a dom, please check!');
         return null;
     }
-    let slots = config.slots ? config.slots : '';
+    let slots = '';
+    config.slots = config.slots ? config.slots : '';
     if(typeof config.slots === 'string') {
         slots = config.slots;
     } else {
