@@ -8,6 +8,9 @@
 </head>
 <body>
     <div id="app"></div>
+    <div class="slot-content" style="display: none;">
+        <el-button>按钮</el-button>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16"></script>
     <script src="./js/SuperReceipt.min.js"></script>
     <script>
@@ -29,6 +32,7 @@
                         }
                     }];
         }, 2000);
+        let slotContent = document.querySelector('.slot-content').innerHTML;
         let superReceipt = SuperReceipt.init({
             el: '#app',
             isEditable: true,
@@ -36,6 +40,7 @@
             loading: false,
             topToolbarAlign: 'right',
             bottomToolbarAlign: 'center',
+            slots: '<template slot="form">' + slotContent + '</template>',
             topToolbar: [
                 {
                     text: '暂存',

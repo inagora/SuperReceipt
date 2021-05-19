@@ -15,7 +15,13 @@ export function init(config, Vue) {
         console.log('The container is not a dom, please check!');
         return null;
     }
-    el.innerHTML = '<x-superreceipt ref="superreceipt" :config="config"></x-superreceipt>';
+    let slots = config.slots ? config.slots : '';
+    if(typeof config.slots === 'string') {
+        slots = config.slots;
+    } else {
+        slots = config.slots.join('');
+    }
+    el.innerHTML = `<x-superreceipt ref="superreceipt" :config="config">${slots}</x-superreceipt>`;
     if(!Vue) {
         Vue = window.Vue;
     }

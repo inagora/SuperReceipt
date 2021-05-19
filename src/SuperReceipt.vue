@@ -2,6 +2,7 @@
     <div class="sr">
         <template v-for="com in coms">
             <component :is="com.com" :key="com.name" :name="com.name" :tableConfig="config[com.name]"></component>
+            <slot :name="com.name"></slot>
         </template>
         <div class="mask" v-show="config.loading">
             <div class="loading">
