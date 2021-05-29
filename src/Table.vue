@@ -62,7 +62,7 @@
                         v-for="(btn, index) in tableConfig.optBtns"
                         :key="index"
                         :conf="btn"
-                        v-show="btnVisible(btn)"
+                        v-show="btnVisible(btn, scope)"
                         @click="handleClick(btn, scope)"></x-button>
                 </template>
             </el-table-column>
@@ -72,7 +72,7 @@
                         v-for="(btn, index) in tableConfig.optBtns"
                         :key="index"
                         :conf="btn"
-                        v-show="btnVisible(btn)"
+                        v-show="btnVisible(btn, scope)"
                         @click="handleClick(btn, scope)"></x-button>
                 </template>
             </el-table-column>
@@ -183,9 +183,9 @@ export default {
             });
             return sums;
         },
-        btnVisible(btn) {
+        btnVisible(btn, scope) {
             if(btn.visible instanceof Function) {
-                return btn.visible();
+                return btn.visible(scope);
             } else {
                 return btn.visible || typeof btn.visible === 'undefined';
             }
