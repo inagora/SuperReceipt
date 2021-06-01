@@ -36,6 +36,8 @@
                 :placeholder="form.placeholder"
                 v-model="formData[form.prop]"
                 style="flex: 1; width: 100%; line-height: 22px;"
+                @keyup.enter.native="handleEnter(form)"
+                @blur="handleBlur($event, form)"
                 :autosize="form.autosize"></el-input>
             <template v-if="form.type === 'radio'">
                 <el-radio 
@@ -67,6 +69,8 @@
                 :type="form.type"
                 style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
                 :value-format="form.format"
+                @keyup.enter.native="handleEnter(form)"
+                @blur="handleBlur($event, form)"
                 v-model="formData[form.prop]"></el-date-picker>
             <el-select
                 v-if="form.type === 'select'"
