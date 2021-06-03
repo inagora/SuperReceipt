@@ -67,6 +67,7 @@
                 :size="form.size"
                 :disabled="form.disabled"
                 :type="form.type"
+                :clearable="form.clearable"
                 style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
                 :value-format="form.format"
                 @keyup.enter.native="handleEnter(form)"
@@ -86,6 +87,7 @@
                     v-for="option in form.options"
                     :key="option.value"
                     :label="option.label"
+                    :disabled="option.disabled"
                     :value="option.value"></el-option>    
             </el-select>
             <el-cascader
