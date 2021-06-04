@@ -147,7 +147,7 @@
             v-show="formVisible(form)"
             :label="form.label">
             <div v-if="form.type === 'radio' || form.type === 'switch' || form.type === 'checkbox'">{{formData[form.prop] == '0' || formData[form.prop] == false ? '否' : '是'}}</div>
-            <div v-else v-text="formData[form.prop]"></div>
+            <div class="is-editable" v-else :contenteditable="form.isEditable" @input="handleInput($event, form.prop)" @blur="handleBlur($event, form)" v-text="formData[form.prop]"></div><i class="el-icon-edit-outline" v-if="form.isEditable"></i>
         </el-form-item>
     </el-form>
 </template>
@@ -179,9 +179,8 @@ export default {
         }
     },
     methods: {
-        handleInput(form, event) {
-            console.log(event);
-            form.input(222);
+        handleInput(event, form) {
+            this.formData[form] = event.target.innerHTML;
         },
         handleChange(val, form) {
             form.change && form.change(val);
@@ -256,6 +255,12 @@ export default {
 .address .el-form-item__content {
     width: auto !important;
     margin-left: 0 !important;
+}
+.el-icon-edit-outline {
+    margin-left: 10px;
+}
+.is-editable {
+    display: inline-block;
 }
 </style>
 
