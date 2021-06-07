@@ -1,7 +1,7 @@
 <template>
     <el-form v-if="config.isEditable" class="sr-form" ref="formData" label-position="left" :model="formData">
         <el-form-item 
-            :class="['sr-form-item', form.type]" 
+            :class="['sr-form-item', form.type, 'sr-form-item__' + form.prop]" 
             v-for="(form, index) in forms" 
             :key="index" 
             :required="form.isRequired"
@@ -136,7 +136,7 @@
     </el-form>
     <el-form v-else class="sr-form" ref="formData" label-position="left" :model="formData">
         <el-form-item 
-            class="sr-form-item" 
+            :class="['sr-form-item', form.type, 'sr-form-item__' + form.prop]" 
             v-for="(form, index) in forms" 
             :key="index" 
             :required="form.isRequired"
@@ -147,7 +147,38 @@
             v-show="formVisible(form)"
             :label="form.label">
             <div v-if="form.type === 'radio' || form.type === 'switch' || form.type === 'checkbox'">{{formData[form.prop] == '0' || formData[form.prop] == false ? '否' : '是'}}</div>
-            <div class="is-editable" v-else :contenteditable="form.isEditable" @input="handleInput($event, form.prop)" @blur="handleBlur($event, form)" v-text="formData[form.prop]"></div><i class="el-icon-edit-outline" v-if="form.isEditable"></i>
+            <template v-else>
+                <div class="is-editable" v-if="!form.isEditable" v-text="formData[form.prop]"></div>
+                <template v-else>
+                    <el-input 
+                        v-if="['input', 'button', 'number', 'password'].includes(form.type)"
+                        :size="form.size"
+                        :disabled="form.disabled"
+                        :type="form.type"
+                        :rows="2"
+                        :maxlength="form.maxlength"
+                        :placeholder="form.placeholder"
+                        v-model="formData[form.prop]"
+                        @keyup.enter.native="handleEnter(form)"
+                        @blur="handleBlur($event, form)"
+                        style="flex: 1; width: 80%; height: 22px; line-height: 22px;"></el-input>
+                    <el-input 
+                        v-if="form.type === 'textarea'"
+                        :size="form.size"
+                        :disabled="form.disabled"
+                        :type="form.type"
+                        :rows="form.rows"
+                        :resize="form.resize"
+                        :maxlength="form.maxlength"
+                        :placeholder="form.placeholder"
+                        v-model="formData[form.prop]"
+                        style="flex: 1; width: 80%; line-height: 22px;"
+                        @keyup.enter.native="handleEnter(form)"
+                        @blur="handleBlur($event, form)"
+                        :autosize="form.autosize"></el-input>
+                    <i class="el-icon-edit-outline"></i>
+                </template>
+            </template>
         </el-form-item>
     </el-form>
 </template>
