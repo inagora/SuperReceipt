@@ -1,7 +1,7 @@
 <template>
     <el-form v-if="config.isEditable" class="sr-form" ref="formData" label-position="left" :model="formData">
         <el-form-item 
-            :class="['sr-form-item', form.type, 'sr-form-item__' + form.prop]" 
+            :class="['sr-form-item', 'sr-form-item__' + form.type, 'sr-form-item__' + form.prop]" 
             v-for="(form, index) in forms" 
             :key="index" 
             :required="form.isRequired"
