@@ -20,7 +20,8 @@
                         id: 1,
                         name: 'niu2',
                         amount1: 10,
-                        seen: false
+                        seen: false,
+                        selected: true
                     },
                     {
                         id: 1,
@@ -398,13 +399,7 @@
                     }
                 ],
                 // 表格数据
-                tableData: [
-                    // {
-                    //     id: 1,
-                    //     name: 'niu',
-                    //     amount1: 10
-                    // }
-                ],
+                tableData: [],
                 // 操作按钮
                 optBtns: [
                     {
@@ -565,9 +560,9 @@
                 ]
             },
         });
-        setTimeout(() => {
-            superReceipt.config.formData.radio = 0;
-        }, 2000);
+        // setTimeout(() => {
+        //     superReceipt.config.formData.radio = 0;
+        // }, 2000);
     </script>
 </body>
 </html>

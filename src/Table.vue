@@ -117,9 +117,11 @@ export default {
         XButton
     },
     mounted() {
-        // this.tableConfig.tableData.forEach(row => {
-        //     this.$refs.table.toggleRowSelection(row);
-        // })
+        this.$nextTick(() => {
+            this.tableConfig.tableData.forEach(row => {
+                this.$refs.table.toggleRowSelection(row, row.selected ? row.selected : false);
+            });
+        });
     },
     data() {
         let tableName = this.name;
@@ -150,6 +152,16 @@ export default {
                 }
                 return this.config.formData[propItem.prop]
             }
+        }
+    },
+    watch: {
+        'tableConfig.tableData'(val) {
+            this.tableConfig.tableData = val;
+            this.$nextTick(() => {
+                this.tableConfig.tableData.forEach(row => {
+                    this.$refs.table.toggleRowSelection(row, row.selected ? row.selected : false);
+                });
+            });
         }
     },
     methods: {
