@@ -148,7 +148,7 @@
             :label="form.label">
             <div v-if="form.type === 'radio' || form.type === 'switch' || form.type === 'checkbox'">{{formData[form.prop] == '0' || formData[form.prop] == false ? '否' : '是'}}</div>
             <template v-else>
-                <div class="is-editable" v-if="!form.isEditable" v-text="formData[form.prop]"></div>
+                <div class="is-editable" v-if="!form.isEditable" v-text="form.showDesc ? getFormDataDesc(formData[form.prop], form.prop, form.options) : formData[form.prop]"></div>
                 <template v-else>
                     <el-input 
                         v-if="['input', 'button', 'number', 'password'].includes(form.type)"
@@ -229,6 +229,24 @@ export default {
         handleBlur(ctx, form) {
             if(ctx.relatedTarget == null) {
                 form.change && form.change(this.formData[form.prop]);
+            }
+        },
+        getFormDataDesc(val, prop, options) {
+            if(!options || typeof options !== 'object') {
+                return val;
+            }
+            if(options instanceof Array) {
+                let result = val;
+                options.forEach(item => {
+                    if(item.value === val) {
+                        result = item.label;
+                    }
+                });
+                return result;
+            }
+            if(typeof options === 'object') {
+                let result = options[prop];
+                return result || val;
             }
         }
     },

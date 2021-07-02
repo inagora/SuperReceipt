@@ -36,7 +36,7 @@
         let slotContent = document.querySelector('.slot-content').innerHTML;
         let superReceipt = SuperReceipt.init({
             el: '#app',
-            isEditable: false,
+            isEditable: true,
             tableKeys: ['table', 'table1'], // 多个table
             loading: false,
             topToolbarAlign: 'right',
@@ -153,20 +153,21 @@
                 },
                 {
                     type: 'select',
-                    label: '收货人电话',
+                    label: '收货人电话2',
                     placeholder: '请输入内容',
                     size: 'mini',
-                    prop: 'sel',
+                    prop: 'receiver_phone',
                     filterable: true,
+                    // showDesc: true,
                     options: [
                         {
-                            value: '选项1',
+                            value: '1',
                             label: '选项1'
                         },{
-                            value: '选项2',
+                            value: '2',
                             label: '选项2'
                         },{
-                            value: '选项3',
+                            value: '3',
                             label: '选项3'
                         }
                     ],
@@ -327,7 +328,8 @@
                 checkbox: true,
                 labeltest: '111111',
                 province: '北京',
-                city: '朝阳'
+                city: '朝阳',
+                receiver_phone: '2'
             },
             table: {
                 isShowIndex: true,
