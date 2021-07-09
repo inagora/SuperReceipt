@@ -150,33 +150,54 @@
             <template v-else>
                 <div class="is-editable" v-if="!form.isEditable" v-text="form.showDesc ? getFormDataDesc(formData[form.prop], form.prop, form.options) : formData[form.prop]"></div>
                 <template v-else>
-                    <el-input 
-                        v-if="['input', 'button', 'number', 'password'].includes(form.type)"
-                        :size="form.size"
-                        :disabled="form.disabled"
-                        :type="form.type"
-                        :rows="2"
-                        :maxlength="form.maxlength"
-                        :placeholder="form.placeholder"
-                        v-model="formData[form.prop]"
-                        @keyup.enter.native="handleEnter(form)"
-                        @blur="handleBlur($event, form)"
-                        style="flex: 1; width: 80%; height: 22px; line-height: 22px;"></el-input>
-                    <el-input 
-                        v-if="form.type === 'textarea'"
-                        :size="form.size"
-                        :disabled="form.disabled"
-                        :type="form.type"
-                        :rows="form.rows"
-                        :resize="form.resize"
-                        :maxlength="form.maxlength"
-                        :placeholder="form.placeholder"
-                        v-model="formData[form.prop]"
-                        style="flex: 1; width: 80%; line-height: 22px;"
-                        @keyup.enter.native="handleEnter(form)"
-                        @blur="handleBlur($event, form)"
-                        :autosize="form.autosize"></el-input>
-                    <i class="el-icon-edit-outline"></i>
+                    <template v-if="['input', 'button', 'number', 'password', 'textarea'].includes(form.type)">
+                        <el-input 
+                            v-if="['input', 'button', 'number', 'password'].includes(form.type)"
+                            :size="form.size"
+                            :disabled="form.disabled"
+                            :type="form.type"
+                            :rows="2"
+                            :maxlength="form.maxlength"
+                            :placeholder="form.placeholder"
+                            v-model="formData[form.prop]"
+                            @keyup.enter.native="handleEnter(form)"
+                            @blur="handleBlur($event, form)"
+                            style="flex: 1; width: 80%; height: 22px; line-height: 22px;"></el-input>
+                        <el-input 
+                            v-if="form.type === 'textarea'"
+                            :size="form.size"
+                            :disabled="form.disabled"
+                            :type="form.type"
+                            :rows="form.rows"
+                            :resize="form.resize"
+                            :maxlength="form.maxlength"
+                            :placeholder="form.placeholder"
+                            v-model="formData[form.prop]"
+                            style="flex: 1; width: 80%; line-height: 22px;"
+                            @keyup.enter.native="handleEnter(form)"
+                            @blur="handleBlur($event, form)"
+                            :autosize="form.autosize"></el-input>
+                        <i class="el-icon-edit-outline"></i>
+                    </template>
+                    <template v-else>
+                        <el-select
+                            v-if="form.type === 'select'"
+                            :type="form.type"
+                            :size="form.size"
+                            :disabled="form.disabled"
+                            :filterable="form.filterable"
+                            v-model="formData[form.prop]"
+                            @change="handleChange($event, form)"
+                            style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
+                            :placeholder="form.placeholder">
+                            <el-option
+                                v-for="option in form.options"
+                                :key="option.value"
+                                :label="option.label"
+                                :disabled="option.disabled"
+                                :value="option.value"></el-option>    
+                        </el-select>
+                    </template>
                 </template>
             </template>
         </el-form-item>
