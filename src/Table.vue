@@ -15,6 +15,7 @@
             :row-style="rowStyle"
             :empty-text="tableConfig.emptyText"
             @selection-change="handleSelectionChange"
+            @select="handleSelect"
             border>
             <el-table-column
                 v-if="tableConfig.isSelect"
@@ -140,7 +141,8 @@ export default {
         return {
             tableConfig,
             printData,
-            isShowOptBtns: isShowOptBtns
+            isShowOptBtns: isShowOptBtns,
+            sumParams: null,
         }
     },
     computed: {
@@ -169,8 +171,10 @@ export default {
             btn.click(scope);
         },
         getSummaries(param) {
-            const { columns, data } = param;
+            this.sumParams = param;
+            let { columns, data } = param;
             const sums = [];
+            if(this.tableConfig.sumMode === 'selected') data = data.filter(item => item.selected);
             columns.forEach((column, index) => {
                 if(index === 0) {
                     sums[index] = '总计';
@@ -217,6 +221,14 @@ export default {
         },
         rowStyle({row, rowIndex}) {
             return row.style;
+        },
+        handleSelect(selection, row) {
+            if(this.tableConfig.sumMode === 'selected') {
+                row.selected = !row.selected;
+                this.sumParams.data = selection;
+                this.getSummaries(this.sumParams);
+            }
+            this.tableConfig.change && this.tableConfig.change(selection, row);
         },
         handleSelectionChange(val) {
             this.tableConfig.selectChange && this.tableConfig.selectChange(val);

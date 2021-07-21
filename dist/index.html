@@ -335,6 +335,8 @@
                 isShowIndex: true,
                 isSelect: true,
                 emptyText: '数据呢',
+                isShowSummary: true,
+                sumMode: 'selected', // 是否只统计选中的
                 title: {
                     text: '这里是title',
                     align: 'center'
@@ -342,12 +344,17 @@
                 headerStyle: {
                     "text-align": "center"
                 },
+                change(selection, row) {
+                    console.log(row);
+                    row.goods_name = '1';
+                },
                 // 表格列
                 columns: [
                 {
                         prop: 'id',
                         label: '商品ID',
-                        width: 50
+                        width: 50,
+                        needSum: true
                     },
                     {
                         prop: 'skuid',
