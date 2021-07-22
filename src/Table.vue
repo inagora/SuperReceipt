@@ -16,6 +16,7 @@
             :empty-text="tableConfig.emptyText"
             @selection-change="handleSelectionChange"
             @select="handleSelect"
+            @select-all="handleSelectAll"
             border>
             <el-table-column
                 v-if="tableConfig.isSelect"
@@ -232,6 +233,22 @@ export default {
         },
         handleSelectionChange(val) {
             this.tableConfig.selectChange && this.tableConfig.selectChange(val);
+        },
+        handleSelectAll(selection) {
+            selection.forEach(item => {
+                item.selected = true;
+            });
+            if(this.tableConfig.sumMode === 'selected') {
+                if(selection.length !== 0) {
+                    this.sumParams.data = selection;
+                } else {
+                    this.sumParams.data.forEach(item => {
+                        item.selected = false;
+                    });
+                }
+                this.getSummaries(this.sumParams);
+            }
+            this.tableConfig.selectAllChange && this.tableConfig.selectAllChange(selection);
         }
     }
 }
