@@ -36,7 +36,7 @@
         let slotContent = document.querySelector('.slot-content').innerHTML;
         let superReceipt = SuperReceipt.init({
             el: '#app',
-            isEditable: true,
+            isEditable: false,
             tableKeys: ['table', 'table1'], // 多个table
             loading: false,
             topToolbarAlign: 'right',
@@ -142,7 +142,11 @@
                     label: '时间',
                     placeholder: '请输入内容',
                     prop: 'stime',
+                    isEditable: true,
                     size: 'mini',
+                    change(val) {
+                        console.log(val);
+                    }
                 },
                 {
                     type: 'date',

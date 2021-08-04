@@ -197,6 +197,17 @@
                                 :disabled="option.disabled"
                                 :value="option.value"></el-option>    
                         </el-select>
+                        <el-date-picker
+                            v-if="['datetime', 'date'].includes(form.type)"
+                            :size="form.size"
+                            :disabled="form.disabled"
+                            :type="form.type"
+                            :clearable="form.clearable"
+                            style="flex: 1; width: 100%; height: 22px; line-height: 22px;"
+                            :value-format="form.format"
+                            @keyup.enter.native="handleEnter(form)"
+                            @blur="handleBlur($event, form)"
+                            v-model="formData[form.prop]"></el-date-picker>
                     </template>
                 </template>
             </template>
