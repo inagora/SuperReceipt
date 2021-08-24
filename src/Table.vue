@@ -41,7 +41,12 @@
                     :prop="column.prop"
                     :width="column.width">
                     <template slot-scope="scope">
-                        <el-input v-if="scope.row.seen" size="mini" :type="column.inputType" @blur="handleBlur($event, scope.row, column.change)" @keyup.enter.native="handleEnter(scope.row, column.change)" v-model="scope.row[column.prop]"/>
+                        <template v-if="scope.row.seen">
+                            <el-input v-if="!column.editType || column.editType === 'input'" size="mini" :type="column.inputType" @blur="handleBlur($event, scope.row, column.change)" @keyup.enter.native="handleEnter(scope.row, column.change)" v-model="scope.row[column.prop]"/>
+                            <el-select v-else-if="column.editType === 'select'" size="mini" @change="handleChange(scope.row, column.change)" v-model="scope.row[column.prop]">
+                                <el-option v-for="(item, index) in column.options" :key="index" :label="item.label" :value="item.value"></el-option>
+                            </el-select>
+                        </template>
                         <span v-else v-html="scope.row[column.prop]"></span>
                     </template>
                 </el-table-column>
@@ -219,6 +224,10 @@ export default {
                 row.seen = false;
                 change && change(row);
             }
+        },
+        handleChange(row, change) {
+            row.seen = false;
+            change && change(row);
         },
         rowStyle({row, rowIndex}) {
             return row.style;

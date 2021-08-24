@@ -540,7 +540,21 @@
                         inputType: 'number',
                         editable: true,
                         align: 'right',
-                        fixed: 2
+                        fixed: 2,
+                        editType: 'select',
+                        options: [
+                            {
+                                label: '数量1',
+                                value: 1
+                            },
+                            {
+                                label: '数量2',
+                                value: 2
+                            }
+                        ],
+                        change(val) {
+                            console.log(val);
+                        }
                     }
                 ],
                 // 表格数据
