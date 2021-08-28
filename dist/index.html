@@ -418,7 +418,7 @@
                     {
                         size: 'mini',
                         text: '编辑',
-                        visible: false,
+                        visible: true,
                         click: function(scope) {
                             console.log(scope);
                         }
@@ -427,7 +427,7 @@
                         size: 'mini',
                         text: '删除',
                         type: 'danger',
-                        visible: false,
+                        visible: true,
                         click: function(scope) {
                             console.log(scope);
                             superReceipt.config.table.tableData.splice(scope.$index, 1);
@@ -577,7 +577,7 @@
                         text: '删除',
                         type: 'danger',
                         visible: function() {
-                            return false;
+                            return true;
                         },
                         click: function(scope) {
                             console.log(scope);

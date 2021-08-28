@@ -47,7 +47,10 @@
                                 <el-option v-for="(item, index) in column.options" :key="index" :label="item.label" :value="item.value"></el-option>
                             </el-select>
                         </template>
-                        <span v-else v-html="scope.row[column.prop]"></span>
+                        <template v-else>
+                            <span v-if="!column.editType" v-html="scope.row[column.prop]"></span>
+                            <span v-else-if="column.editType === 'select'">{{getSelectLabel(scope.row, column)}}</span>
+                        </template>
                     </template>
                 </el-table-column>
                 <el-table-column
@@ -258,6 +261,15 @@ export default {
                 this.getSummaries(this.sumParams);
             }
             this.tableConfig.selectAllChange && this.tableConfig.selectAllChange(selection);
+        },
+        getSelectLabel(row, column) {
+            let val = row[column.prop];
+            let options = column.options;
+            let filterOption = options.filter(item => {
+                return item.value === val;
+            });
+            if(filterOption.length === 0) return val;
+            return filterOption[0].label; 
         }
     }
 }
