@@ -43,7 +43,7 @@
                     <template slot-scope="scope">
                         <template v-if="scope.row.seen">
                             <el-input v-if="!column.editType || column.editType === 'input'" size="mini" :type="column.inputType" @blur="handleBlur($event, scope.row, column.change)" @keyup.enter.native="handleEnter(scope.row, column.change)" v-model="scope.row[column.prop]"/>
-                            <el-select v-else-if="column.editType === 'select'" size="mini" @change="handleChange(scope.row, column.change)" v-model="scope.row[column.prop]">
+                            <el-select v-else-if="column.editType === 'select'" clearable size="mini" @change="handleChange(scope.row, column.change)" v-model="scope.row[column.prop]">
                                 <el-option v-for="(item, index) in column.options" :key="index" :label="item.label" :value="item.value"></el-option>
                             </el-select>
                         </template>
